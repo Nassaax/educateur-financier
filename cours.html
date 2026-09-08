@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cours en direct — Éducateur Financier</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23101E33%22/><circle cx=%2250%22 cy=%2250%22 r=%2216%22 fill=%22%23C6A15B%22/></svg>">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="nav-inner">
+    <a href="index.html" class="brand"><span class="dot">●</span> Éducateur Financier</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="apropos.html">À propos</a></li>
+      <li><a href="outils.html">Outils</a></li>
+      <li><a href="cours.html" class="active">Cours en direct</a></li>
+      <li><a href="conseils.html">Conseils</a></li>
+      <li><a href="boutique.html">Boutique</a></li>
+      <li><a href="coaching.html">Coaching</a></li>
+    </ul>
+  </div>
+</header>
+
+<section class="hero" style="padding:48px 24px 60px;">
+  <div class="hero-inner">
+    <div class="eyebrow">Marchés</div>
+    <h1 style="font-size:clamp(26px,4vw,38px);">Cours en direct</h1>
+    <p class="lead">Indices, ETF populaires et taux de change, mis à jour automatiquement toutes les minutes.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container" style="max-width:900px;">
+    <div id="quotes-status" style="text-align:center; color:var(--muted); font-size:13px; margin-bottom:20px;">
+      Chargement des cours...
+    </div>
+    <div class="grid grid-3" id="quotes-grid"></div>
+
+    <div class="callout" style="margin-top:32px;">
+      <b>À propos de ces données :</b> les cours affichés proviennent d'une source publique et peuvent avoir un léger différé (généralement 15-20 minutes pour les indices). Ils sont fournis à titre informatif et ne doivent pas servir de base à une décision d'investissement immédiate.
+    </div>
+  </div>
+</section>
+
+<style>
+  .quote-card{
+    background:#fff; border:1px solid var(--line); border-radius:14px;
+    padding:22px; text-align:left;
+  }
+  .quote-card .q-label{ font-size:13px; color:var(--muted); margin-bottom:6px; font-weight:600; }
+  .quote-card .q-price{ font-family:'Fraunces',serif; font-size:26px; color:var(--navy); font-weight:600; }
+  .quote-card .q-change{ font-size:14px; font-weight:600; margin-top:6px; }
+  .quote-card .q-change.up{ color:var(--green); }
+  .quote-card .q-change.down{ color:var(--red); }
+  .quote-card.error{ color:var(--muted); font-size:13px; }
+  .quote-skel{
+    background:#fff; border:1px solid var(--line); border-radius:14px; padding:22px; height:104px;
+    background-image:linear-gradient(90deg, #fff 0%, #F1EEE6 50%, #fff 100%);
+    background-size:200% 100%; animation:shimmer 1.4s infinite;
+  }
+  @keyframes shimmer{ 0%{background-position:200% 0;} 100%{background-position:-200% 0;} }
+</style>
+
+<script>
+async function loadQuotes(){
+  const grid = document.getElementById('quotes-grid');
+  const status = document.getElementById('quotes-status');
+  grid.innerHTML = Array(6).fill('<div class="quote-skel"></div>').join('');
+
+  try{
+    const res = await fetch('/api/quotes');
+    const data = await res.json();
+    grid.innerHTML = '';
+    data.quotes.forEach(q => {
+      const card = document.createElement('div');
+      if(q.error){
+        card.className = 'quote-card error';
+        card.innerHTML = `<div class="q-label">${q.label}</div><div>Donnée indisponible pour l'instant</div>`;
+      } else {
+        const dir = q.change >= 0 ? 'up' : 'down';
+        const arrow = q.change >= 0 ? '▲' : '▼';
+        card.className = 'quote-card';
+        card.innerHTML = `
+          <div class="q-label">${q.label}</div>
+          <div class="q-price">${q.price.toLocaleString('fr-BE', {maximumFractionDigits:2})} <span style="font-size:14px; color:var(--muted);">${q.currency||''}</span></div>
+          <div class="q-change ${dir}">${arrow} ${q.change.toFixed(2)} (${q.changePct.toFixed(2)}%)</div>
+        `;
+      }
+      grid.appendChild(card);
+    });
+    const updated = new Date(data.updated);
+    status.textContent = 'Dernière mise à jour : ' + updated.toLocaleTimeString('fr-BE');
+  }catch(e){
+    status.textContent = "Impossible de charger les cours pour le moment.";
+    grid.innerHTML = '';
+  }
+}
+
+loadQuotes();
+setInterval(loadQuotes, 60000); // rafraîchit toutes les 60 secondes
+</script>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <div class="brand" style="margin-bottom:8px;"><span class="dot">●</span> Éducateur Financier</div>
+    </div>
+    <div class="footer-links">
+      <a href="apropos.html">À propos</a>
+      <a href="outils.html">Outils</a>
+      <a href="cours.html">Cours en direct</a>
+      <a href="conseils.html">Conseils</a>
+      <a href="boutique.html">Boutique</a>
+      <a href="coaching.html">Coaching</a>
+      <a href="mentions-legales.html">Mentions légales</a>
+      <a href="confidentialite.html">Confidentialité</a>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 Éducateur Financier — Contenu éducatif, ne constitue pas un conseil financier personnalisé.</div>
+</footer>
+
+<script>
+document.getElementById('navToggle').addEventListener('click', () => {
+  document.getElementById('navLinks').classList.toggle('open');
+});
+</script>
+
+</body>
+</html>

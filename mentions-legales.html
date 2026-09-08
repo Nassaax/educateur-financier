@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mentions légales — Éducateur Financier</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23101E33%22/><circle cx=%2250%22 cy=%2250%22 r=%2216%22 fill=%22%23C6A15B%22/></svg>">
+<link rel="stylesheet" href="style.css">
+<style>
+  .legal{ max-width:720px; margin:0 auto; padding:0 24px; }
+  .legal h2{ font-size:19px; color:var(--navy); margin:32px 0 10px; font-weight:600; }
+  .legal p, .legal li{ font-size:14.5px; line-height:1.7; color:var(--ink); margin-bottom:10px; }
+  .legal ul{ padding-left:20px; }
+  .fill-in{ background:#FBF3E3; padding:1px 6px; border-radius:4px; color:#9A7327; font-weight:600; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="nav-inner">
+    <a href="index.html" class="brand"><span class="dot">●</span> Éducateur Financier</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="apropos.html">À propos</a></li>
+      <li><a href="outils.html">Outils</a></li>
+      <li><a href="cours.html">Cours en direct</a></li>
+      <li><a href="conseils.html">Conseils</a></li>
+      <li><a href="boutique.html">Boutique</a></li>
+      <li><a href="coaching.html">Coaching</a></li>
+    </ul>
+  </div>
+</header>
+
+<section class="hero" style="padding:44px 24px 50px;">
+  <div class="hero-inner">
+    <h1 style="font-size:clamp(24px,3.5vw,32px);">Mentions légales</h1>
+  </div>
+</section>
+
+<section class="section">
+  <div class="legal">
+
+    <h2>Éditeur du site</h2>
+    <p>
+      Ce site est édité par <span class="fill-in">[ton nom ou ta raison sociale]</span>, basé(e) en Belgique.<br>
+      Numéro d'entreprise (BCE) : <span class="fill-in">[à compléter si applicable]</span><br>
+      Adresse e-mail de contact : <span class="fill-in">[ton email de contact]</span>
+    </p>
+
+    <h2>Hébergement</h2>
+    <p>Ce site est hébergé par <span class="fill-in">[nom de l'hébergeur, ex. Vercel Inc. / Railway Corp.]</span>.</p>
+
+    <h2>Nature du contenu</h2>
+    <p>Le contenu de ce site (outils, simulateurs, articles, guides) est fourni à titre <b>éducatif et informatif</b> uniquement. Il ne constitue en aucun cas un conseil en investissement, un conseil fiscal, ou un conseil financier personnalisé au sens de la réglementation belge (FSMA) ou européenne (ESMA).</p>
+    <p>Les simulations et calculateurs disponibles sur ce site reposent sur des hypothèses fournies par l'utilisateur et ne garantissent aucun résultat futur. Toute décision d'investissement reste de la seule responsabilité de l'utilisateur.</p>
+
+    <h2>Liens affiliés</h2>
+    <p>Certains liens présents sur ce site (notamment dans la section « Comparateurs ») sont des liens affiliés. Si tu ouvres un compte ou souscris à un service via ces liens, l'éditeur du site peut percevoir une commission, sans coût supplémentaire pour toi. Cela n'influence pas l'objectivité des comparatifs présentés.</p>
+
+    <h2>Propriété intellectuelle</h2>
+    <p>L'ensemble des contenus présents sur ce site (textes, outils, visuels, logos) est la propriété de l'éditeur, sauf mention contraire, et ne peut être reproduit sans autorisation préalable.</p>
+
+    <h2>Coaching et services d'accompagnement</h2>
+    <p>Les services de coaching proposés via ce site sont des services d'éducation financière et d'aide à la structuration de l'épargne personnelle. Ils ne remplacent pas les services d'un conseiller fiscal, d'un planificateur financier agréé FSMA, ou d'un avocat pour toute question nécessitant un avis professionnel personnalisé.</p>
+
+    <h2>Contact</h2>
+    <p>Pour toute question relative à ce site ou à ces mentions légales, contacte : <span class="fill-in">[ton email de contact]</span></p>
+
+    <p style="margin-top:30px; font-size:13px; color:var(--muted);">Dernière mise à jour : septembre 2026.</p>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <div class="brand" style="margin-bottom:8px;"><span class="dot">●</span> Éducateur Financier</div>
+    </div>
+    <div class="footer-links">
+      <a href="outils.html">Outils</a>
+      <a href="cours.html">Cours en direct</a>
+      <a href="conseils.html">Conseils</a>
+      <a href="boutique.html">Boutique</a>
+      <a href="coaching.html">Coaching</a>
+      <a href="mentions-legales.html">Mentions légales</a>
+      <a href="confidentialite.html">Confidentialité</a>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 Éducateur Financier — Contenu éducatif, ne constitue pas un conseil financier personnalisé.</div>
+</footer>
+
+<script>
+document.getElementById('navToggle').addEventListener('click', () => {
+  document.getElementById('navLinks').classList.toggle('open');
+});
+</script>
+
+</body>
+</html>

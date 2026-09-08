@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glossaire financier — Éducateur Financier</title>
+<meta name="description" content="Les termes financiers et boursiers expliqués simplement, pour les débutants en Belgique.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23101E33%22/><circle cx=%2250%22 cy=%2250%22 r=%2216%22 fill=%22%23C6A15B%22/></svg>">
+<link rel="stylesheet" href="style.css">
+<style>
+  .glossary{ max-width:760px; margin:0 auto; padding:0 24px; }
+  .term{
+    border-bottom:1px solid var(--line); padding:20px 0;
+  }
+  .term:first-child{ padding-top:0; }
+  .term h3{ font-size:16px; color:var(--navy); margin:0 0 6px; font-weight:600; font-family:'Inter',sans-serif; }
+  .term p{ font-size:14px; color:var(--ink); line-height:1.6; margin:0; }
+  .search-box{
+    width:100%; padding:14px 18px; border:1.5px solid var(--line); border-radius:10px;
+    font-size:15px; font-family:'Inter',sans-serif; margin-bottom:30px; outline:none;
+  }
+  .search-box:focus{ border-color:var(--gold); }
+  .no-results{ text-align:center; color:var(--muted); padding:30px 0; display:none; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="nav-inner">
+    <a href="index.html" class="brand"><span class="dot">●</span> Éducateur Financier</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="apropos.html">À propos</a></li>
+      <li><a href="outils.html">Outils</a></li>
+      <li><a href="cours.html">Cours en direct</a></li>
+      <li><a href="conseils.html" class="active">Conseils</a></li>
+      <li><a href="boutique.html">Boutique</a></li>
+      <li><a href="coaching.html">Coaching</a></li>
+    </ul>
+  </div>
+</header>
+
+<section class="hero" style="padding:48px 24px 60px;">
+  <div class="hero-inner">
+    <div class="eyebrow">Glossaire</div>
+    <h1 style="font-size:clamp(26px,4vw,38px);">Le jargon financier, expliqué simplement</h1>
+    <p class="lead">Pas de définitions compliquées — juste ce qu'il faut comprendre pour avancer.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="glossary">
+    <input type="text" class="search-box" id="search" placeholder="Rechercher un terme (ex: ETF, TOB, dividende...)">
+    <div id="terms-list"></div>
+    <div class="no-results" id="no-results">Aucun terme ne correspond à ta recherche.</div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <div class="brand" style="margin-bottom:8px;"><span class="dot">●</span> Éducateur Financier</div>
+    </div>
+    <div class="footer-links">
+      <a href="apropos.html">À propos</a>
+      <a href="outils.html">Outils</a>
+      <a href="cours.html">Cours en direct</a>
+      <a href="conseils.html">Conseils</a>
+      <a href="boutique.html">Boutique</a>
+      <a href="coaching.html">Coaching</a>
+      <a href="mentions-legales.html">Mentions légales</a>
+      <a href="confidentialite.html">Confidentialité</a>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 Éducateur Financier — Contenu éducatif, ne constitue pas un conseil financier personnalisé.</div>
+</footer>
+
+<script>
+const TERMS = [
+  ["ETF", "Fonds coté en bourse (Exchange-Traded Fund) qui réplique la performance d'un indice, comme le S&P 500 ou le MSCI World, en une seule ligne d'investissement."],
+  ["ETF capitalisant (Acc)", "ETF qui réinvestit automatiquement les dividendes reçus au lieu de les verser — pas de précompte mobilier à payer sur cette étape."],
+  ["ETF distribuant (Dist)", "ETF qui verse périodiquement les dividendes perçus aux investisseurs, soumis au précompte mobilier de 30 % en Belgique."],
+  ["TOB", "Taxe sur les Opérations de Bourse — taxe belge due à chaque achat et vente de titres via un intermédiaire, entre 0,12 % et 1,32 % selon le type de fonds."],
+  ["Précompte mobilier", "Impôt belge de 30 % retenu à la source sur les revenus mobiliers (dividendes, intérêts)."],
+  ["Taxe sur les plus-values", "Depuis 2026, taxe belge de 10 % sur les plus-values réalisées à la vente d'actifs financiers, au-delà d'une exonération annuelle."],
+  ["Indice boursier", "Panier représentatif d'actions (comme le BEL 20 ou le S&P 500) qui mesure la performance globale d'un marché."],
+  ["Diversification", "Stratégie qui consiste à répartir ses investissements sur plusieurs actifs, secteurs ou zones géographiques pour réduire le risque global."],
+  ["Intérêts composés", "Mécanisme par lequel les intérêts générés par un capital sont réinvestis et génèrent eux-mêmes des intérêts, accélérant la croissance dans le temps."],
+  ["Rendement", "Gain généré par un investissement sur une période donnée, généralement exprimé en pourcentage annuel."],
+  ["Volatilité", "Mesure de l'ampleur des variations de prix d'un actif — plus elle est élevée, plus les mouvements de prix (à la hausse comme à la baisse) sont marqués."],
+  ["Compte-titres", "Compte bancaire spécifique utilisé pour détenir des actions, ETF, obligations ou autres titres financiers."],
+  ["Courtier (broker)", "Intermédiaire financier qui permet d'acheter et vendre des titres en bourse, comme Bolero, Keytrade ou DEGIRO."],
+  ["UCITS", "Cadre réglementaire européen encadrant les fonds d'investissement, garantissant un certain niveau de protection pour l'investisseur (« OPCVM » en français)."],
+  ["Frais de gestion (TER)", "Pourcentage annuel prélevé automatiquement par le fonds pour couvrir ses frais de fonctionnement — plus il est bas, mieux c'est pour le rendement net."],
+  ["Règle des 4 %", "Estimation selon laquelle on peut retirer chaque année environ 4 % de son capital investi sans l'épuiser sur le long terme, utilisée pour calculer l'indépendance financière."],
+  ["Fonds d'urgence", "Épargne de précaution équivalente à 3-6 mois de dépenses, gardée sur un compte accessible pour faire face aux imprévus sans devoir revendre ses investissements."],
+  ["DCA (Dollar-Cost Averaging)", "Stratégie qui consiste à investir un montant fixe à intervalles réguliers (ex. chaque mois), plutôt qu'une grosse somme en une fois."],
+];
+
+const list = document.getElementById('terms-list');
+const noResults = document.getElementById('no-results');
+
+function render(filter=''){
+  const f = filter.toLowerCase();
+  const filtered = TERMS.filter(([term, def]) => term.toLowerCase().includes(f) || def.toLowerCase().includes(f));
+  list.innerHTML = filtered.map(([term, def]) => `
+    <div class="term">
+      <h3>${term}</h3>
+      <p>${def}</p>
+    </div>
+  `).join('');
+  noResults.style.display = filtered.length === 0 ? 'block' : 'none';
+}
+
+document.getElementById('search').addEventListener('input', e => render(e.target.value));
+render();
+
+document.getElementById('navToggle').addEventListener('click', () => {
+  document.getElementById('navLinks').classList.toggle('open');
+});
+</script>
+
+</body>
+</html>

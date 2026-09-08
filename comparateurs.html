@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comparateurs — Éducateur Financier</title>
+<meta name="description" content="Compare les courtiers en ligne et les comptes d'épargne belges pour choisir en toute confiance.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23101E33%22/><circle cx=%2250%22 cy=%2250%22 r=%2216%22 fill=%22%23C6A15B%22/></svg>">
+<link rel="stylesheet" href="style.css">
+<style>
+  .comp-table{ width:100%; border-collapse:collapse; background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 1px 0 var(--line); }
+  .comp-table th{ background:var(--navy); color:#fff; text-align:left; padding:12px 14px; font-size:13px; font-weight:600; }
+  .comp-table td{ padding:14px; font-size:13.5px; border-bottom:1px solid var(--line); vertical-align:top; }
+  .comp-table tr:last-child td{ border-bottom:none; }
+  .comp-table tr:nth-child(even) td{ background:#FBF9F5; }
+  .tag{ display:inline-block; font-size:11px; font-weight:700; padding:3px 9px; border-radius:12px; background:#E7F3EC; color:var(--green); }
+  .tag.partial{ background:#FBF3E3; color:#9A7327; }
+  .aff-link{ font-weight:700; color:var(--navy); text-decoration:none; border-bottom:2px solid var(--gold); white-space:nowrap; }
+  .table-scroll{ overflow-x:auto; }
+  .updated-note{ font-size:12px; color:var(--muted); margin-top:10px; text-align:right; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="nav-inner">
+    <a href="index.html" class="brand"><span class="dot">●</span> Éducateur Financier</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="apropos.html">À propos</a></li>
+      <li><a href="outils.html">Outils</a></li>
+      <li><a href="cours.html">Cours en direct</a></li>
+      <li><a href="conseils.html">Conseils</a></li>
+      <li><a href="boutique.html">Boutique</a></li>
+      <li><a href="coaching.html">Coaching</a></li>
+    </ul>
+  </div>
+</header>
+
+<section class="hero" style="padding:48px 24px 60px;">
+  <div class="hero-inner">
+    <div class="eyebrow">Comparateurs</div>
+    <h1 style="font-size:clamp(26px,4vw,38px);">Choisis en connaissance de cause</h1>
+    <p class="lead">Courtiers en ligne et comptes d'épargne belges, comparés simplement — pour éviter de payer plus que nécessaire.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head" style="text-align:left; max-width:none; margin-bottom:24px;">
+      <div class="kicker">Investir</div>
+      <h2>Comparateur de courtiers en ligne</h2>
+      <p>Les 5 courtiers les plus utilisés par les investisseurs belges qui achètent des ETF.</p>
+    </div>
+
+    <div class="table-scroll">
+      <table class="comp-table">
+        <tr>
+          <th>Courtier</th>
+          <th>Frais ETF (ordre de grandeur)</th>
+          <th>Fiscalité belge automatique</th>
+          <th>Idéal pour</th>
+          <th></th>
+        </tr>
+        <tr>
+          <td><b>Bolero</b> (KBC)</td>
+          <td>≈ 2,50 € / ordre (plan ETF Playlist)</td>
+          <td><span class="tag">Oui — complète</span></td>
+          <td>Débutants qui veulent zéro administratif</td>
+          <td><!-- Remplace le # par ton lien affilié Bolero --><a href="#" class="aff-link">Découvrir →</a></td>
+        </tr>
+        <tr>
+          <td><b>Keytrade Bank</b></td>
+          <td>≈ 2,45 € / ordre (jusqu'à 250 €)</td>
+          <td><span class="tag">Oui — complète</span></td>
+          <td>Bon compromis simplicité / frais</td>
+          <td><!-- Remplace le # par ton lien affilié Keytrade --><a href="#" class="aff-link">Découvrir →</a></td>
+        </tr>
+        <tr>
+          <td><b>MeDirect</b></td>
+          <td>Souvent sans commission sur une liste d'ETF dédiée</td>
+          <td><span class="tag">Oui — complète</span></td>
+          <td>Fiscalité belge + frais bas</td>
+          <td><!-- Remplace le # par ton lien affilié MeDirect --><a href="#" class="aff-link">Découvrir →</a></td>
+        </tr>
+        <tr>
+          <td><b>DEGIRO</b></td>
+          <td>Dès ≈ 1 € / ordre (sélection ETF Core)</td>
+          <td><span class="tag partial">Partielle</span> — TOB automatique, dividendes/plus-values à déclarer soi-même</td>
+          <td>À l'aise avec un peu d'administratif</td>
+          <td><!-- Remplace le # par ton lien affilié DEGIRO --><a href="#" class="aff-link">Découvrir →</a></td>
+        </tr>
+        <tr>
+          <td><b>Saxo Bank</b></td>
+          <td>Frais variables selon le plan</td>
+          <td><span class="tag">Oui</span> — retenue automatique avec option de retrait</td>
+          <td>Investisseurs plus expérimentés, outils avancés</td>
+          <td><!-- Remplace le # par ton lien affilié Saxo --><a href="#" class="aff-link">Découvrir →</a></td>
+        </tr>
+      </table>
+    </div>
+    <div class="updated-note">Frais vérifiés en septembre 2026 — à confirmer sur le site du courtier avant ouverture de compte.</div>
+  </div>
+</section>
+
+<section class="section" style="background:#fff; border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+  <div class="container">
+    <div class="section-head" style="text-align:left; max-width:none; margin-bottom:24px;">
+      <div class="kicker">Épargner</div>
+      <h2>Comment choisir son compte d'épargne belge</h2>
+      <p>Les taux changent régulièrement — voici comment comparer intelligemment plutôt que suivre uniquement le chiffre affiché en gros.</p>
+    </div>
+
+    <div class="grid grid-2">
+      <div class="card">
+        <div class="icon">🧩</div>
+        <h3>Taux de base + prime de fidélité</h3>
+        <p>Un compte d'épargne réglementé belge combine un taux de base (immédiat) et une prime de fidélité (acquise après 12 mois sans retrait). Un compte affichant un taux total plus bas peut parfois rapporter davantage net qu'un concurrent tape-à-l'œil, selon la répartition entre les deux.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🛡️</div>
+        <h3>Exonération fiscale</h3>
+        <p>Les intérêts des comptes d'épargne réglementés belges sont exonérés de précompte mobilier jusqu'à un certain montant par an et par personne. Au-delà, le précompte de 30 % s'applique — un point à vérifier si tu épargnes des montants importants.</p>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:24px;">
+      <b>Astuce :</b> compare toujours en <b>taux net réel</b>, pas en taux affiché. Un compte non réglementé (banque étrangère type NIBC) peut sembler attractif mais implique une déclaration à la Banque Nationale et une fiscalité différente — renseigne-toi avant d'ouvrir.
+    </div>
+
+    <div style="text-align:center; margin-top:32px;">
+      <!-- Remplace le # par ton lien affilié / comparateur de comptes d'épargne -->
+      <a href="#" class="btn btn-primary" style="background:var(--navy); color:#fff;">Comparer les taux actuels →</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container" style="max-width:760px;">
+    <div class="callout warn">
+      <b>Transparence :</b> certains liens de cette page sont des liens affiliés. Si tu ouvres un compte via ces liens, nous pouvons recevoir une commission — cela ne change rien au prix ou aux conditions pour toi. Ce comparatif reste éducatif et n'est pas une recommandation personnalisée ; vérifie toujours les conditions actuelles avant de choisir.
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <div class="brand" style="margin-bottom:8px;"><span class="dot">●</span> Éducateur Financier</div>
+    </div>
+    <div class="footer-links">
+      <a href="apropos.html">À propos</a>
+      <a href="outils.html">Outils</a>
+      <a href="cours.html">Cours en direct</a>
+      <a href="conseils.html">Conseils</a>
+      <a href="boutique.html">Boutique</a>
+      <a href="coaching.html">Coaching</a>
+      <a href="mentions-legales.html">Mentions légales</a>
+      <a href="confidentialite.html">Confidentialité</a>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 Éducateur Financier — Contenu éducatif, ne constitue pas un conseil financier personnalisé.</div>
+</footer>
+
+<script>
+document.getElementById('navToggle').addEventListener('click', () => {
+  document.getElementById('navLinks').classList.toggle('open');
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculateur d'Indépendance Financière (FIRE)</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23101E33%22/><circle cx=%2250%22 cy=%2250%22 r=%2216%22 fill=%22%23C6A15B%22/></svg>">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap');
+  :root{
+    --navy:#101E33; --navy-2:#182C4A; --gold:#C6A15B; --gold-light:#E0C48A;
+    --paper:#F6F4EF; --ink:#1B2430; --muted:#6B7280; --green:#3E8E5A; --line:#E4E0D6;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--paper); color:var(--ink); font-family:'Inter',sans-serif; -webkit-font-smoothing:antialiased;}
+  h1,h2,.serif{font-family:'Fraunces',serif;}
+  .topbar{background:var(--navy); padding:12px 24px; text-align:center;}
+  .topbar a{color:#C7CDDA; font-size:13px; text-decoration:none;}
+  .hero{background:linear-gradient(180deg,var(--navy) 0%,var(--navy-2) 100%); color:#F1EFEA; padding:56px 24px 90px; position:relative; overflow:hidden;}
+  .hero::after{content:""; position:absolute; inset:0; background-image:linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px), linear-gradient(0deg, rgba(255,255,255,.04) 1px, transparent 1px); background-size:64px 64px; pointer-events:none;}
+  .hero-inner{max-width:720px; margin:0 auto; position:relative; text-align:center;}
+  .eyebrow{color:var(--gold-light); font-size:13px; letter-spacing:.03em; margin-bottom:16px; font-weight:700; text-transform:uppercase;}
+  h1{font-size:clamp(28px,4.5vw,42px); font-weight:500; line-height:1.15; margin:0 0 14px;}
+  h1 em{font-style:italic; color:var(--gold-light);}
+  .hero p{font-size:16px; color:#C7CDDA; max-width:520px; margin:0 auto; line-height:1.55;}
+
+  .card{max-width:920px; margin:-56px auto 64px; background:#fff; border-radius:18px; box-shadow:0 24px 60px -20px rgba(16,30,51,.35); position:relative; z-index:2; overflow:hidden; display:grid; grid-template-columns:1fr 1fr;}
+  @media (max-width:760px){ .card{grid-template-columns:1fr;} }
+  .controls{padding:36px 32px; border-right:1px solid var(--line);}
+  @media (max-width:760px){ .controls{border-right:none; border-bottom:1px solid var(--line);} }
+  .field{margin-bottom:24px;}
+  .field label{display:flex; justify-content:space-between; align-items:baseline; font-size:13px; color:var(--muted); margin-bottom:8px; font-weight:600;}
+  .field .value{font-family:'Fraunces',serif; font-size:18px; color:var(--navy); font-weight:600;}
+  input[type=range]{width:100%; -webkit-appearance:none; height:4px; background:var(--line); border-radius:4px; outline:none;}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none; width:18px; height:18px; border-radius:50%; background:var(--gold); cursor:pointer; border:3px solid #fff; box-shadow:0 0 0 1px var(--gold);}
+  input[type=range]::-moz-range-thumb{width:18px; height:18px; border-radius:50%; background:var(--gold); cursor:pointer; border:3px solid #fff; box-shadow:0 0 0 1px var(--gold);}
+
+  .results{padding:36px 32px; background:var(--paper); display:flex; flex-direction:column;}
+  .result-headline{font-size:13px; color:var(--muted); font-weight:600; margin-bottom:6px;}
+  .result-amount{font-family:'Fraunces',serif; font-weight:600; font-size:clamp(30px,4vw,40px); color:var(--navy); line-height:1.05; margin-bottom:4px;}
+  .result-sub{font-size:13px; color:var(--muted); margin-bottom:24px;}
+
+  .breakdown{display:flex; flex-direction:column; gap:12px; margin-bottom:8px;}
+  .row{display:flex; justify-content:space-between; align-items:center; font-size:13.5px;}
+  .row .label{color:var(--ink);}
+  .row .num{font-weight:600; color:var(--navy);}
+  hr.sep{border:none; border-top:1px solid var(--line); margin:18px 0;}
+
+  .progress-wrap{margin-top:auto;}
+  .progress-label{display:flex; justify-content:space-between; font-size:12px; color:var(--muted); margin-bottom:8px; font-weight:600;}
+  .progress-bar{height:14px; border-radius:8px; background:var(--line); overflow:hidden;}
+  .progress-bar div{height:100%; background:linear-gradient(90deg, var(--gold), var(--green)); transition:width .2s ease;}
+
+  .info-section{max-width:760px; margin:0 auto 70px; padding:0 24px;}
+  .info-section h2{font-size:22px; color:var(--navy); margin-bottom:14px; font-weight:500;}
+  .info-section p{font-size:14.5px; color:var(--ink); line-height:1.65; margin-bottom:14px;}
+  .callout{border-left:3px solid var(--gold); background:#FBF7EE; border-radius:8px; padding:16px 20px; font-size:13.5px; line-height:1.6;}
+  .disclaimer{max-width:760px; margin:0 auto 50px; padding:0 24px; font-size:12px; color:var(--muted); text-align:center; font-style:italic;}
+</style>
+</head>
+<body>
+
+<div class="topbar"><a href="index.html">← Retour à Éducateur Financier</a></div>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Calculateur gratuit — Indépendance financière</div>
+    <h1>Combien te faut-il pour <em>ne plus dépendre</em> d'un salaire ?</h1>
+    <p>Ajuste tes dépenses et ton épargne pour estimer ton capital cible et le temps qu'il te faudra pour l'atteindre.</p>
+  </div>
+</div>
+
+<div class="card">
+  <div class="controls">
+    <div class="field">
+      <label>Dépenses mensuelles actuelles <span class="value" id="v-expenses">1 800 €</span></label>
+      <input type="range" id="expenses" min="800" max="6000" step="50" value="1800">
+    </div>
+    <div class="field">
+      <label>Taux de retrait annuel visé <span class="value" id="v-withdraw">4 %</span></label>
+      <input type="range" id="withdraw" min="2.5" max="5" step="0.1" value="4">
+    </div>
+    <div class="field">
+      <label>Capital déjà investi <span class="value" id="v-current">5 000 €</span></label>
+      <input type="range" id="current" min="0" max="200000" step="500" value="5000">
+    </div>
+    <div class="field">
+      <label>Épargne investie chaque mois <span class="value" id="v-monthly">400 €</span></label>
+      <input type="range" id="monthly" min="0" max="3000" step="10" value="400">
+    </div>
+    <div class="field">
+      <label>Rendement annuel estimé <span class="value" id="v-rate">6 %</span></label>
+      <input type="range" id="rate" min="1" max="10" step="0.1" value="6">
+    </div>
+  </div>
+
+  <div class="results">
+    <div class="result-headline">Ton capital cible (« FIRE number »)</div>
+    <div class="result-amount" id="r-target">540 000 €</div>
+    <div class="result-sub" id="r-target-sub">25× tes dépenses annuelles, pour un retrait de 4 %/an</div>
+
+    <div class="breakdown">
+      <div class="row"><span class="label">Dépenses annuelles</span><span class="num" id="r-annual">21 600 €</span></div>
+      <div class="row"><span class="label">Capital actuel</span><span class="num" id="r-current-out">5 000 €</span></div>
+      <div class="row"><span class="label">Progression actuelle</span><span class="num" id="r-progress-pct">0,9 %</span></div>
+    </div>
+    <hr class="sep">
+    <div class="row" style="margin-bottom:20px;">
+      <span class="label" style="font-weight:600;">Temps estimé pour atteindre l'indépendance</span>
+      <span class="num" style="font-size:16px;" id="r-years">≈ 28 ans</span>
+    </div>
+
+    <div class="progress-wrap">
+      <div class="progress-label"><span>Progression vers ton FIRE number</span><span id="progress-pct-label">0,9 %</span></div>
+      <div class="progress-bar"><div id="progress-fill" style="width:1%;"></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="info-section">
+  <h2>Comment ça fonctionne</h2>
+  <p>La règle des 4 % (parfois appelée « règle de Trinity ») estime que tu peux retirer chaque année 4 % de ton capital investi sans l'épuiser sur le long terme, à condition qu'il reste investi et continue de produire un rendement. Ton « capital cible » est donc environ <b>25 fois tes dépenses annuelles</b> (l'inverse de 4 %).</p>
+  <p>Un taux de retrait plus prudent (3 % à 3,5 %) demande un capital plus important mais réduit le risque d'épuiser ton capital sur une retraite très longue. Un taux plus élevé (5 %) réduit le capital nécessaire mais augmente le risque.</p>
+  <div class="callout">
+    <b>À garder en tête :</b> ce calcul suppose un rendement constant, ce qui ne reflète jamais la réalité des marchés (qui montent et descendent). Il s'agit d'une estimation pour te donner un ordre de grandeur et une direction — pas une promesse. Les taux de retrait sûrs sont aussi débattus parmi les experts financiers selon l'horizon et l'allocation d'actifs.
+  </div>
+</div>
+
+<div class="disclaimer">
+  Outil éducatif. Les hypothèses de rendement sont réglables et ne garantissent aucun résultat futur — ceci n'est pas un conseil en investissement personnalisé.
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+const fmt = n => Math.round(n).toLocaleString('fr-BE') + ' €';
+
+const expensesEl = $('expenses'), withdrawEl = $('withdraw'), currentEl = $('current'),
+      monthlyEl = $('monthly'), rateEl = $('rate');
+
+function compute(){
+  const expenses = +expensesEl.value;
+  const withdrawRate = +withdrawEl.value / 100;
+  const current = +currentEl.value;
+  const monthly = +monthlyEl.value;
+  const rateAnnual = +rateEl.value / 100;
+
+  $('v-expenses').textContent = fmt(expenses);
+  $('v-withdraw').textContent = withdrawEl.value + ' %';
+  $('v-current').textContent = fmt(current);
+  $('v-monthly').textContent = fmt(monthly);
+  $('v-rate').textContent = rateEl.value + ' %';
+
+  const annualExpenses = expenses * 12;
+  const target = annualExpenses / withdrawRate;
+
+  $('r-target').textContent = fmt(target);
+  $('r-target-sub').textContent = `${(1/withdrawRate).toFixed(1)}× tes dépenses annuelles, pour un retrait de ${withdrawEl.value} %/an`;
+  $('r-annual').textContent = fmt(annualExpenses);
+  $('r-current-out').textContent = fmt(current);
+
+  const progressPct = Math.min(100, (current / target) * 100);
+  $('r-progress-pct').textContent = progressPct.toFixed(1) + ' %';
+  $('progress-pct-label').textContent = progressPct.toFixed(1) + ' %';
+  $('progress-fill').style.width = Math.max(progressPct,1) + '%';
+
+  // Years to reach target via monthly compounding
+  const rMonth = rateAnnual / 12;
+  let bal = current;
+  let months = 0;
+  const maxMonths = 100 * 12;
+  if(bal >= target){
+    months = 0;
+  } else if(monthly <= 0 && rMonth <= 0){
+    months = Infinity;
+  } else {
+    while(bal < target && months < maxMonths){
+      bal = bal * (1 + rMonth) + monthly;
+      months++;
+    }
+  }
+
+  if(months >= maxMonths){
+    $('r-years').textContent = "Non atteint sous 100 ans avec ces paramètres";
+  } else {
+    const years = Math.floor(months/12);
+    const remMonths = months % 12;
+    $('r-years').textContent = `≈ ${years} an${years>1?'s':''}` + (remMonths ? ` et ${remMonths} mois` : '');
+  }
+}
+
+[expensesEl, withdrawEl, currentEl, monthlyEl, rateEl].forEach(el => el.addEventListener('input', compute));
+compute();
+</script>
+
+</body>
+</html>
