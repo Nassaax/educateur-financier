@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quel profil d'investisseur es-tu ? — Éducateur Financier</title>
+<meta name="description" content="Un quiz de 2 minutes pour découvrir ton profil d'investisseur (prudent, équilibré ou dynamique) et les prochaines étapes adaptées.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23101E33%22/><circle cx=%2250%22 cy=%2250%22 r=%2216%22 fill=%22%23C6A15B%22/></svg>">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap');
+  :root{
+    --navy:#101E33; --navy-2:#182C4A; --gold:#C6A15B; --gold-light:#E0C48A;
+    --paper:#F6F4EF; --ink:#1B2430; --muted:#6B7280; --green:#3E8E5A; --line:#E4E0D6;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--paper); color:var(--ink); font-family:'Inter',sans-serif; -webkit-font-smoothing:antialiased;}
+  h1,h2,.serif{font-family:'Fraunces',serif;}
+  .topbar{background:var(--navy); padding:12px 24px; text-align:center;}
+  .topbar a{color:#C7CDDA; font-size:13px; text-decoration:none;}
+
+  .hero{background:linear-gradient(180deg,var(--navy) 0%,var(--navy-2) 100%); color:#F1EFEA; padding:52px 24px 80px; position:relative; overflow:hidden; text-align:center;}
+  .hero::after{content:""; position:absolute; inset:0; background-image:linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px), linear-gradient(0deg, rgba(255,255,255,.04) 1px, transparent 1px); background-size:64px 64px; pointer-events:none;}
+  .hero-inner{max-width:640px; margin:0 auto; position:relative;}
+  .eyebrow{color:var(--gold-light); font-size:13px; letter-spacing:.03em; margin-bottom:14px; font-weight:700; text-transform:uppercase;}
+  h1{font-size:clamp(28px,4.5vw,40px); font-weight:500; line-height:1.15; margin:0 0 12px;}
+  .hero p{font-size:16px; color:#C7CDDA; margin:0;}
+
+  .quiz-card{
+    max-width:640px; margin:-50px auto 60px; background:#fff; border-radius:20px;
+    box-shadow:0 24px 60px -20px rgba(16,30,51,.35); position:relative; z-index:2;
+    padding:40px 36px; min-height:380px;
+  }
+  .progress-track{ height:6px; background:var(--line); border-radius:6px; overflow:hidden; margin-bottom:32px; }
+  .progress-fill{ height:100%; background:var(--gold); transition:width .3s ease; width:0%; }
+
+  .q-count{ font-size:12.5px; color:var(--muted); font-weight:600; margin-bottom:10px; text-transform:uppercase; letter-spacing:.02em; }
+  .q-text{ font-family:'Fraunces',serif; font-size:23px; color:var(--navy); font-weight:600; margin-bottom:26px; line-height:1.3; }
+
+  .options{ display:flex; flex-direction:column; gap:12px; }
+  .option-btn{
+    text-align:left; background:var(--paper); border:2px solid var(--line); border-radius:12px;
+    padding:16px 18px; font-size:15px; color:var(--ink); cursor:pointer; font-family:'Inter',sans-serif;
+    transition:border-color .15s ease, background .15s ease;
+  }
+  .option-btn:hover{ border-color:var(--gold); background:#FBF7EE; }
+
+  .quiz-nav{ display:flex; justify-content:space-between; margin-top:28px; }
+  .back-btn{
+    background:none; border:none; color:var(--muted); font-size:13.5px; cursor:pointer;
+    font-family:'Inter',sans-serif; padding:8px 0;
+  }
+  .back-btn:disabled{ opacity:0; pointer-events:none; }
+
+  /* Result */
+  .result{ display:none; text-align:center; }
+  .result.active{ display:block; }
+  .result-icon{ font-size:44px; margin-bottom:14px; }
+  .result-title{ font-family:'Fraunces',serif; font-size:28px; color:var(--navy); font-weight:600; margin-bottom:10px; }
+  .result-desc{ font-size:15px; color:var(--ink); line-height:1.65; margin-bottom:26px; text-align:left; }
+  .result-actions{ display:flex; flex-direction:column; gap:12px; }
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    padding:14px 22px; border-radius:10px; font-weight:600; font-size:14.5px;
+    text-decoration:none; border:none; cursor:pointer; font-family:'Inter',sans-serif;
+  }
+  .btn-primary{ background:var(--navy); color:#fff; }
+  .btn-outline{ background:transparent; color:var(--navy); border:1.5px solid var(--navy); }
+  .restart-link{ display:block; margin-top:20px; font-size:13px; color:var(--muted); text-decoration:underline; cursor:pointer; background:none; border:none; font-family:'Inter',sans-serif; }
+
+  .questions-wrap{ display:block; }
+  .questions-wrap.hidden{ display:none; }
+</style>
+</head>
+<body>
+
+<div class="topbar"><a href="index.html">← Retour à Éducateur Financier</a></div>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Quiz gratuit — 2 minutes</div>
+    <h1>Quel profil d'investisseur es-tu ?</h1>
+    <p>6 questions pour y voir plus clair sur ta tolérance au risque et tes prochaines étapes.</p>
+  </div>
+</div>
+
+<div class="quiz-card">
+  <div class="progress-track"><div class="progress-fill" id="progress"></div></div>
+
+  <div class="questions-wrap" id="questionsWrap">
+    <div class="q-count" id="qCount">Question 1/6</div>
+    <div class="q-text" id="qText"></div>
+    <div class="options" id="qOptions"></div>
+    <div class="quiz-nav">
+      <button class="back-btn" id="backBtn">← Précédent</button>
+    </div>
+  </div>
+
+  <div class="result" id="result">
+    <div class="result-icon" id="resultIcon"></div>
+    <div class="result-title" id="resultTitle"></div>
+    <div class="result-desc" id="resultDesc"></div>
+    <div class="result-actions" id="resultActions"></div>
+    <button class="restart-link" id="restartBtn">Refaire le quiz</button>
+  </div>
+</div>
+
+<script>
+const QUESTIONS = [
+  {
+    text: "Si ton portefeuille perdait 15% de sa valeur en un mois, tu...",
+    options: [
+      { label: "Vendrais tout, ça me stresserait trop", score: 0 },
+      { label: "Vendrais une partie par précaution", score: 1 },
+      { label: "Ne changerais rien, j'attendrais", score: 2 },
+      { label: "En profiterais pour investir plus", score: 3 },
+    ]
+  },
+  {
+    text: "Ton horizon d'investissement principal, c'est plutôt...",
+    options: [
+      { label: "Moins de 3 ans", score: 0 },
+      { label: "3 à 7 ans", score: 1 },
+      { label: "7 à 15 ans", score: 2 },
+      { label: "Plus de 15 ans", score: 3 },
+    ]
+  },
+  {
+    text: "As-tu déjà un fonds d'urgence (3-6 mois de dépenses) de côté ?",
+    options: [
+      { label: "Non, pas encore", score: 0 },
+      { label: "Partiellement", score: 1 },
+      { label: "Oui, complet", score: 3 },
+    ]
+  },
+  {
+    text: "Ton expérience actuelle en investissement...",
+    options: [
+      { label: "Aucune, je débute totalement", score: 0 },
+      { label: "J'ai lu / regardé du contenu, jamais investi", score: 1 },
+      { label: "J'ai déjà un petit portefeuille", score: 2 },
+      { label: "J'investis régulièrement depuis un moment", score: 3 },
+    ]
+  },
+  {
+    text: "Face à deux options, tu préfères plutôt...",
+    options: [
+      { label: "Un rendement faible mais garanti", score: 0 },
+      { label: "Un bon compromis rendement/sécurité", score: 2 },
+      { label: "Un rendement élevé, quitte à prendre des risques", score: 3 },
+    ]
+  },
+  {
+    text: "Ton objectif principal en investissant, c'est...",
+    options: [
+      { label: "Protéger ce que j'ai déjà", score: 0 },
+      { label: "Faire croître mon épargne progressivement", score: 2 },
+      { label: "Construire un capital important sur le long terme", score: 3 },
+    ]
+  },
+];
+
+const PROFILES = {
+  prudent: {
+    icon: "🛡️",
+    title: "Profil Prudent",
+    desc: "Tu privilégies la sécurité et tu es sensible aux baisses de marché — c'est une qualité, pas un défaut. Un bon point de départ : consolide ton fonds d'urgence, puis introduis progressivement une petite part d'ETF larges et diversifiés pour ne pas laisser l'inflation grignoter ton épargne.",
+    actions: [
+      { label: "Simuler ma trajectoire d'épargne", href: "simulateur-epargne.html", primary: true },
+      { label: "Guide : par où commencer", href: "commencer.html", primary: false },
+    ]
+  },
+  equilibre: {
+    icon: "⚖️",
+    title: "Profil Équilibré",
+    desc: "Tu acceptes une part de risque pour viser un meilleur rendement, sans pour autant vouloir jouer aux montagnes russes. Un portefeuille diversifié d'ETF larges (actions + une touche d'obligations) avec des versements réguliers te correspond probablement bien.",
+    actions: [
+      { label: "Voir les outils d'allocation", href: "outils.html", primary: true },
+      { label: "Comprendre la fiscalité belge", href: "boutique.html", primary: false },
+    ]
+  },
+  dynamique: {
+    icon: "🚀",
+    title: "Profil Dynamique",
+    desc: "Tu as l'horizon et le tempérament pour viser la croissance sur le long terme, en acceptant la volatilité en cours de route. Assure-toi juste que ton fonds d'urgence est solide avant d'aller plus loin — le reste, c'est du potentiel à exploiter.",
+    actions: [
+      { label: "Calculer mon indépendance financière", href: "fire.html", primary: true },
+      { label: "Voir le pack complet ETF", href: "boutique.html", primary: false },
+    ]
+  },
+};
+
+function getProfile(score, maxScore) {
+  const pct = score / maxScore;
+  if (pct < 0.4) return PROFILES.prudent;
+  if (pct < 0.7) return PROFILES.equilibre;
+  return PROFILES.dynamique;
+}
+
+let current = 0;
+let answers = [];
+const maxScore = QUESTIONS.reduce((sum, q) => sum + Math.max(...q.options.map(o => o.score)), 0);
+
+const qCount = document.getElementById('qCount');
+const qText = document.getElementById('qText');
+const qOptions = document.getElementById('qOptions');
+const progress = document.getElementById('progress');
+const backBtn = document.getElementById('backBtn');
+const questionsWrap = document.getElementById('questionsWrap');
+const result = document.getElementById('result');
+
+function renderQuestion() {
+  const q = QUESTIONS[current];
+  qCount.textContent = `Question ${current + 1}/${QUESTIONS.length}`;
+  qText.textContent = q.text;
+  progress.style.width = ((current) / QUESTIONS.length * 100) + '%';
+  backBtn.disabled = current === 0;
+
+  qOptions.innerHTML = '';
+  q.options.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'option-btn';
+    btn.textContent = opt.label;
+    btn.addEventListener('click', () => selectAnswer(opt.score));
+    qOptions.appendChild(btn);
+  });
+}
+
+function selectAnswer(score) {
+  answers[current] = score;
+  if (current < QUESTIONS.length - 1) {
+    current++;
+    renderQuestion();
+  } else {
+    showResult();
+  }
+}
+
+backBtn.addEventListener('click', () => {
+  if (current > 0) {
+    current--;
+    renderQuestion();
+  }
+});
+
+function showResult() {
+  progress.style.width = '100%';
+  const totalScore = answers.reduce((a, b) => a + b, 0);
+  const profile = getProfile(totalScore, maxScore);
+
+  questionsWrap.classList.add('hidden');
+  result.classList.add('active');
+
+  document.getElementById('resultIcon').textContent = profile.icon;
+  document.getElementById('resultTitle').textContent = profile.title;
+  document.getElementById('resultDesc').textContent = profile.desc;
+
+  const actionsEl = document.getElementById('resultActions');
+  actionsEl.innerHTML = '';
+  profile.actions.forEach(a => {
+    const link = document.createElement('a');
+    link.href = a.href;
+    link.className = 'btn ' + (a.primary ? 'btn-primary' : 'btn-outline');
+    link.textContent = a.label + ' →';
+    actionsEl.appendChild(link);
+  });
+}
+
+document.getElementById('restartBtn').addEventListener('click', () => {
+  current = 0;
+  answers = [];
+  result.classList.remove('active');
+  questionsWrap.classList.remove('hidden');
+  renderQuestion();
+});
+
+renderQuestion();
+</script>
+
+</body>
+</html>

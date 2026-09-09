@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Remplace REMPLACE-PAR-TON-DOMAINE.be par ton vrai nom de domaine une fois déployé -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://REMPLACE-PAR-TON-DOMAINE.be/index.html</loc><priority>1.0</priority></url>
-  <url><loc>https://REMPLACE-PAR-TON-DOMAINE.be/apropos.html</loc><priority>0.6</priority></url>
-  <url><loc>https://REMPLACE-PAR-TON-DOMAINE.be/commencer.html</loc><priority>0.9</priority></url>
-  <url><loc>https://REMPLACE-PAR-TON-DOMAINE.be/outils.html</loc><priority>0.9</priority></url>
-  <url><loc>https://REMPLACE-PAR-TON-DOMAINE.be/simulateur-epargne.html</loc><priority>0.8</priority></url>
-  <url><loc>https://REMPLACE-PAR-TON-DOMAINE.be/fire.html</loc><priority>0.8</priority></url>
-  <url><loc>https://REMPLACE-PAR-TON-DOMAINE.be/cours.html</loc><priority>0.7</priority></url>
-  <url><loc>https://REMPLACE-PAR-TON-DOMAINE.be/conseils.html</loc><priority>0.8</priority></url>
-  <url><loc>https://REMPLACE-PAR-TON-DOMAINE.be/erreurs-debutants.html</loc><priority>0.7</priority></url>
-  <url><loc>https://REMPLACE-PAR-TON-DOMAINE.be/glossaire.html</loc><priority>0.7</priority></url>
-  <url><loc>https://REMPLACE-PAR-TON-DOMAINE.be/comparateurs.html</loc><priority>0.8</priority></url>
-  <url><loc>https://REMPLACE-PAR-TON-DOMAINE.be/boutique.html</loc><priority>0.7</priority></url>
-  <url><loc>https://REMPLACE-PAR-TON-DOMAINE.be/coaching.html</loc><priority>0.9</priority></url>
-  <url><loc>https://REMPLACE-PAR-TON-DOMAINE.be/mentions-legales.html</loc><priority>0.3</priority></url>
-  <url><loc>https://REMPLACE-PAR-TON-DOMAINE.be/confidentialite.html</loc><priority>0.3</priority></url>
+  <url><loc>https://educateur-financier.vercel.app/index.html</loc><priority>1.0</priority></url>
+  <url><loc>https://educateur-financier.vercel.app/apropos.html</loc><priority>0.6</priority></url>
+  <url><loc>https://educateur-financier.vercel.app/commencer.html</loc><priority>0.9</priority></url>
+  <url><loc>https://educateur-financier.vercel.app/outils.html</loc><priority>0.9</priority></url>
+  <url><loc>https://educateur-financier.vercel.app/quiz.html</loc><priority>0.9</priority></url>
+  <url><loc>https://educateur-financier.vercel.app/simulateur-epargne.html</loc><priority>0.8</priority></url>
+  <url><loc>https://educateur-financier.vercel.app/fire.html</loc><priority>0.8</priority></url>
+  <url><loc>https://educateur-financier.vercel.app/cours.html</loc><priority>0.7</priority></url>
+  <url><loc>https://educateur-financier.vercel.app/conseils.html</loc><priority>0.8</priority></url>
+  <url><loc>https://educateur-financier.vercel.app/erreurs-debutants.html</loc><priority>0.7</priority></url>
+  <url><loc>https://educateur-financier.vercel.app/glossaire.html</loc><priority>0.7</priority></url>
+  <url><loc>https://educateur-financier.vercel.app/comparateurs.html</loc><priority>0.8</priority></url>
+  <url><loc>https://educateur-financier.vercel.app/boutique.html</loc><priority>0.7</priority></url>
+  <url><loc>https://educateur-financier.vercel.app/coaching.html</loc><priority>0.9</priority></url>
+  <url><loc>https://educateur-financier.vercel.app/mentions-legales.html</loc><priority>0.3</priority></url>
+  <url><loc>https://educateur-financier.vercel.app/confidentialite.html</loc><priority>0.3</priority></url>
 </urlset>
