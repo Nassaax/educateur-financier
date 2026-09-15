@@ -53,7 +53,7 @@
 <header class="site-header">
   <div class="nav-inner">
     <a href="index.html" class="brand"><span class="dot">●</span> Éducateur Financier</a>
-    <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">☰</button>
     <ul class="nav-links" id="navLinks">
       <li><a href="index.html">Accueil</a></li>
       <li><a href="apropos.html">À propos</a></li>
@@ -91,17 +91,17 @@
     </div>
     <div class="grid grid-3">
       <div class="card">
-        <div class="icon">🌱</div>
+        <div class="icon" aria-hidden="true">🌱</div>
         <h3>Tu n'as jamais investi</h3>
         <p>On part de la base : comment ouvrir un compte-titres, choisir un courtier, et faire ton premier versement en toute confiance.</p>
       </div>
       <div class="card">
-        <div class="icon">📐</div>
+        <div class="icon" aria-hidden="true">📐</div>
         <h3>Tu as déjà commencé, seul(e)</h3>
         <p>On revoit ta stratégie actuelle, ton allocation, et on corrige ce qui te coûte de l'argent sans que tu le saches.</p>
       </div>
       <div class="card">
-        <div class="icon">🇧🇪</div>
+        <div class="icon" aria-hidden="true">🇧🇪</div>
         <h3>Tu veux optimiser ta fiscalité</h3>
         <p>TOB, précompte mobilier, nouvelle taxe sur les plus-values : on structure tes décisions pour rester légalement efficace.</p>
       </div>
@@ -117,17 +117,17 @@
     </div>
     <div class="grid grid-3">
       <div class="card">
-        <div class="icon">1️⃣</div>
+        <div class="icon" aria-hidden="true">1️⃣</div>
         <h3>Appel découverte</h3>
         <p>15-20 minutes pour comprendre ta situation et voir si l'accompagnement te correspond.</p>
       </div>
       <div class="card">
-        <div class="icon">2️⃣</div>
+        <div class="icon" aria-hidden="true">2️⃣</div>
         <h3>Séance de stratégie</h3>
         <p>On construit ensemble ton plan d'épargne, ton allocation, et ta feuille de route fiscale.</p>
       </div>
       <div class="card">
-        <div class="icon">3️⃣</div>
+        <div class="icon" aria-hidden="true">3️⃣</div>
         <h3>Suivi</h3>
         <p>Tu repars avec un plan concret — et la possibilité d'un suivi pour ajuster au fil du temps.</p>
       </div>
@@ -246,8 +246,9 @@
 </footer>
 
 <script>
-document.getElementById('navToggle').addEventListener('click', () => {
-  document.getElementById('navLinks').classList.toggle('open');
+document.getElementById('navToggle').addEventListener('click', function() {
+  const open = document.getElementById('navLinks').classList.toggle('open');
+  this.setAttribute('aria-expanded', open);
 });
 </script>
 

@@ -20,7 +20,7 @@
 <header class="site-header">
   <div class="nav-inner">
     <a href="index.html" class="brand"><span class="dot">●</span> Éducateur Financier</a>
-    <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">☰</button>
     <ul class="nav-links" id="navLinks">
       <li><a href="index.html">Accueil</a></li>
       <li><a href="apropos.html">À propos</a></li>
@@ -50,49 +50,49 @@
   <div class="container">
     <div class="grid grid-2">
       <div class="card">
-        <div class="icon">🚦</div>
+        <div class="icon" aria-hidden="true">🚦</div>
         <h3>Par où commencer ?</h3>
         <p>Le guide étape par étape pour te lancer, si tu pars de zéro.</p>
         <a href="commencer.html" class="card-link">Lire le guide →</a>
       </div>
       <div class="card">
-        <div class="icon">🇧🇪</div>
+        <div class="icon" aria-hidden="true">🇧🇪</div>
         <h3>Fiscalité ETF en Belgique 2026</h3>
         <p>TOB, précompte mobilier, nouvelle taxe sur les plus-values : ce qui a changé et comment t'organiser.</p>
         <a href="boutique.html" class="card-link">Voir le guide complet →</a>
       </div>
       <div class="card">
-        <div class="icon">🏦</div>
+        <div class="icon" aria-hidden="true">🏦</div>
         <h3>Comptes d'épargne : ce qu'il faut savoir</h3>
         <p>Comment fonctionnent les comptes réglementés belges, et où trouver les meilleurs taux.</p>
         <a href="comparateurs.html" class="card-link">Voir le comparateur →</a>
       </div>
       <div class="card">
-        <div class="icon">⚠️</div>
+        <div class="icon" aria-hidden="true">⚠️</div>
         <h3>5 erreurs qui coûtent cher aux débutants</h3>
         <p>Les pièges les plus fréquents quand on commence à investir en ETF.</p>
         <a href="erreurs-debutants.html" class="card-link">Lire l'article →</a>
       </div>
       <div class="card">
-        <div class="icon">📖</div>
+        <div class="icon" aria-hidden="true">📖</div>
         <h3>Glossaire financier</h3>
         <p>Les termes boursiers et fiscaux expliqués simplement, avec recherche instantanée.</p>
         <a href="glossaire.html" class="card-link">Consulter le glossaire →</a>
       </div>
       <div class="card">
-        <div class="icon">🚀</div>
+        <div class="icon" aria-hidden="true">🚀</div>
         <h3>Comment investir en bourse en Belgique</h3>
         <p>Le guide complet, étape par étape, pour ouvrir ton premier compte-titres et investir en ETF.</p>
         <a href="comment-investir-bourse-belgique.html" class="card-link">Lire le guide →</a>
       </div>
       <div class="card">
-        <div class="icon">🌍</div>
+        <div class="icon" aria-hidden="true">🌍</div>
         <h3>Meilleur ETF World en 2026</h3>
         <p>Les critères qui comptent vraiment pour choisir un ETF monde en tant qu'investisseur belge.</p>
         <a href="meilleur-etf-world-2026.html" class="card-link">Lire l'article →</a>
       </div>
       <div class="card">
-        <div class="icon">💶</div>
+        <div class="icon" aria-hidden="true">💶</div>
         <h3>Précompte mobilier expliqué</h3>
         <p>Ce qu'est le précompte mobilier, sur quoi il s'applique, et comment en limiter légalement l'impact.</p>
         <a href="precompte-mobilier.html" class="card-link">Lire l'article →</a>
@@ -121,8 +121,9 @@
 </footer>
 
 <script>
-document.getElementById('navToggle').addEventListener('click', () => {
-  document.getElementById('navLinks').classList.toggle('open');
+document.getElementById('navToggle').addEventListener('click', function() {
+  const open = document.getElementById('navLinks').classList.toggle('open');
+  this.setAttribute('aria-expanded', open);
 });
 </script>
 

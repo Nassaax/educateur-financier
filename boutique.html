@@ -20,7 +20,7 @@
 <header class="site-header">
   <div class="nav-inner">
     <a href="index.html" class="brand"><span class="dot">●</span> Éducateur Financier</a>
-    <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">☰</button>
     <ul class="nav-links" id="navLinks">
       <li><a href="index.html">Accueil</a></li>
       <li><a href="apropos.html">À propos</a></li>
@@ -50,20 +50,20 @@
   <div class="container">
     <div class="grid grid-3">
       <div class="card">
-        <div class="icon">📊</div>
+        <div class="icon" aria-hidden="true">📊</div>
         <h3>Simulateur Épargne & Portefeuille ETF — Excel</h3>
         <p>4 onglets, formules automatiques, compatible Excel & Google Sheets.</p>
         <a href="downloads/Simulateur_Epargne_ETF.xlsx" class="card-link" download>Télécharger (.xlsx) →</a>
       </div>
       <div class="card">
-        <div class="icon">🗂️</div>
+        <div class="icon" aria-hidden="true">🗂️</div>
         <h3>Simulateur Épargne & Portefeuille ETF — Notion</h3>
         <p>3 bases de données connectées, duplication en 1 clic dans ton propre espace.</p>
         <!-- Remplace le # par le lien public de duplication de ta page Notion -->
         <a href="#" class="card-link">Dupliquer le template →</a>
       </div>
       <div class="card">
-        <div class="icon">🇧🇪</div>
+        <div class="icon" aria-hidden="true">🇧🇪</div>
         <h3>Guide Fiscal ETF Belgique 2026</h3>
         <p>10 pages pour comprendre et optimiser légalement ta fiscalité d'investisseur.</p>
         <a href="downloads/Ebook_Fiscalite_ETF_Belgique_2026.pdf" class="card-link" download>Télécharger (PDF) →</a>
@@ -96,8 +96,9 @@
 </footer>
 
 <script>
-document.getElementById('navToggle').addEventListener('click', () => {
-  document.getElementById('navLinks').classList.toggle('open');
+document.getElementById('navToggle').addEventListener('click', function() {
+  const open = document.getElementById('navLinks').classList.toggle('open');
+  this.setAttribute('aria-expanded', open);
 });
 </script>
 

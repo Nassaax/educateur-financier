@@ -44,7 +44,7 @@
 <header class="site-header">
   <div class="nav-inner">
     <a href="index.html" class="brand"><span class="dot">●</span> Éducateur Financier</a>
-    <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">☰</button>
     <ul class="nav-links" id="navLinks">
       <li><a href="index.html" class="active">Accueil</a></li>
       <li><a href="apropos.html">À propos</a></li>
@@ -98,19 +98,19 @@
     </div>
     <div class="grid grid-3">
       <div class="card">
-        <div class="icon">🧮</div>
+        <div class="icon" aria-hidden="true">🧮</div>
         <h3>Outils gratuits</h3>
         <p>Simulateur d'épargne, calculateur d'intérêts composés, et bientôt un comparateur de brokers belges.</p>
         <a href="outils.html" class="card-link">Voir les outils →</a>
       </div>
       <div class="card">
-        <div class="icon">📈</div>
+        <div class="icon" aria-hidden="true">📈</div>
         <h3>Cours en direct</h3>
         <p>Les indices et ETF les plus suivis, mis à jour en continu, pour garder un œil sur les marchés.</p>
         <a href="cours.html" class="card-link">Voir les cours →</a>
       </div>
       <div class="card">
-        <div class="icon">📚</div>
+        <div class="icon" aria-hidden="true">📚</div>
         <h3>Conseils pratiques</h3>
         <p>Fiscalité belge, comptes d'épargne, erreurs à éviter — des guides courts et actionnables.</p>
         <a href="conseils.html" class="card-link">Lire les guides →</a>
@@ -236,8 +236,9 @@
 </footer>
 
 <script>
-document.getElementById('navToggle').addEventListener('click', () => {
-  document.getElementById('navLinks').classList.toggle('open');
+document.getElementById('navToggle').addEventListener('click', function() {
+  const open = document.getElementById('navLinks').classList.toggle('open');
+  this.setAttribute('aria-expanded', open);
 });
 
 /* --- Newsletter signup ---
