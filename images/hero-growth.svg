@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 420" role="img" aria-label="Illustration d'une courbe de croissance financière avec pièces">
+  <defs>
+    <linearGradient id="gGold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#E0C48A"/>
+      <stop offset="100%" stop-color="#C6A15B"/>
+    </linearGradient>
+    <filter id="gBlur" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="36"/>
+    </filter>
+  </defs>
+
+  <circle cx="392" cy="70" r="120" fill="#E0C48A" opacity=".28" filter="url(#gBlur)"/>
+  <circle cx="70" cy="360" r="110" fill="#3A5A8A" opacity=".22" filter="url(#gBlur)"/>
+
+  <rect x="56" y="60" width="368" height="300" rx="28" fill="#FFFFFF" fill-opacity=".07" stroke="#FFFFFF" stroke-opacity=".18" stroke-width="1.5"/>
+
+  <g stroke-linecap="round">
+    <rect x="120" y="270" width="34" height="60" rx="8" fill="#E0C48A" opacity=".85"/>
+    <rect x="178" y="230" width="34" height="100" rx="8" fill="#E0C48A" opacity=".9"/>
+    <rect x="236" y="190" width="34" height="140" rx="8" fill="#E0C48A"/>
+    <rect x="294" y="150" width="34" height="180" rx="8" fill="url(#gGold)"/>
+  </g>
+
+  <path d="M118 250 L176 205 L234 170 L292 120" fill="none" stroke="#F1EFEA" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="2 10"/>
+  <path d="M270 118 L292 120 L288 142" fill="none" stroke="#F1EFEA" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <circle cx="140" cy="110" r="26" fill="url(#gGold)"/>
+  <text x="140" y="118" font-family="Georgia, serif" font-size="22" font-weight="700" fill="#101E33" text-anchor="middle">€</text>
+
+  <circle cx="356" cy="220" r="17" fill="#182C4A" stroke="#E0C48A" stroke-width="2"/>
+  <text x="356" y="226" font-family="Georgia, serif" font-size="14" font-weight="700" fill="#E0C48A" text-anchor="middle">€</text>
+</svg>

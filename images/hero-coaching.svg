@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 420" role="img" aria-label="Illustration d'une boussole et d'un chemin menant à un objectif">
+  <defs>
+    <linearGradient id="gGold2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#E0C48A"/>
+      <stop offset="100%" stop-color="#C6A15B"/>
+    </linearGradient>
+    <filter id="gBlur2" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="36"/>
+    </filter>
+  </defs>
+
+  <circle cx="90" cy="80" r="120" fill="#E0C48A" opacity=".26" filter="url(#gBlur2)"/>
+  <circle cx="400" cy="350" r="110" fill="#3A5A8A" opacity=".22" filter="url(#gBlur2)"/>
+
+  <rect x="56" y="60" width="368" height="300" rx="28" fill="#FFFFFF" fill-opacity=".07" stroke="#FFFFFF" stroke-opacity=".18" stroke-width="1.5"/>
+
+  <path d="M110 300 C 170 300, 170 200, 240 190 C 300 182, 300 130, 350 120" fill="none" stroke="#F1EFEA" stroke-width="3" stroke-dasharray="2 10" stroke-linecap="round"/>
+
+  <circle cx="110" cy="300" r="44" fill="#182C4A" stroke="url(#gGold2)" stroke-width="3"/>
+  <circle cx="110" cy="300" r="6" fill="#E0C48A"/>
+  <path d="M110 300 L128 280 M110 300 L96 316" stroke="#E0C48A" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="110" cy="300" r="44" fill="none" stroke="#F1EFEA" stroke-opacity=".4" stroke-width="1"/>
+
+  <g>
+    <rect x="342" y="70" width="4" height="60" fill="#F1EFEA"/>
+    <path d="M346 72 L392 84 L346 96 Z" fill="url(#gGold2)"/>
+  </g>
+
+  <circle cx="240" cy="190" r="6" fill="#E0C48A"/>
+  <circle cx="180" cy="250" r="5" fill="#F1EFEA" opacity=".7"/>
+</svg>
