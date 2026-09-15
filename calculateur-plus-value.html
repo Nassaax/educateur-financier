@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculateur de la taxe sur les plus-values 2026 (Belgique)</title>
+<meta name="description" content="Estime l'impôt sur tes plus-values financières en Belgique selon la réforme 2026 : montant exonéré, taux applicable, impôt dû et plus-value nette.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Calculateur de la taxe sur les plus-values 2026 (Belgique)">
+<meta property="og:description" content="Estime l'impôt sur tes plus-values financières en Belgique selon la réforme 2026 : montant exonéré, taux applicable, impôt dû et plus-value nette.">
+<meta property="og:url" content="https://educateur-financier.vercel.app/calculateur-plus-value.html">
+<meta property="og:locale" content="fr_BE">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://educateur-financier.vercel.app/calculateur-plus-value.html">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23101E33%22/><circle cx=%2250%22 cy=%2250%22 r=%2216%22 fill=%22%23C6A15B%22/></svg>">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap');
+  :root{
+    --navy:#101E33; --navy-2:#182C4A; --gold:#C6A15B; --gold-light:#E0C48A;
+    --paper:#F6F4EF; --ink:#1B2430; --muted:#6B7280; --green:#3E8E5A; --red:#B14545; --line:#E4E0D6;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--paper); color:var(--ink); font-family:'Inter',sans-serif; -webkit-font-smoothing:antialiased;}
+  h1,h2,.serif{font-family:'Fraunces',serif;}
+  .topbar{background:var(--navy); padding:12px 24px; text-align:center;}
+  .topbar a{color:#C7CDDA; font-size:13px; text-decoration:none;}
+
+  .hero{background:linear-gradient(180deg,var(--navy) 0%,var(--navy-2) 100%); color:#F1EFEA; padding:56px 24px 90px; position:relative; overflow:hidden;}
+  .hero::after{content:""; position:absolute; inset:0; background-image:linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px), linear-gradient(0deg, rgba(255,255,255,.04) 1px, transparent 1px); background-size:64px 64px; pointer-events:none;}
+  .hero-inner{max-width:720px; margin:0 auto; position:relative; text-align:center;}
+  .eyebrow{color:var(--gold-light); font-size:13px; letter-spacing:.03em; margin-bottom:16px; font-weight:700; text-transform:uppercase;}
+  h1{font-size:clamp(28px,4.5vw,42px); font-weight:500; line-height:1.15; margin:0 0 14px;}
+  h1 em{font-style:italic; color:var(--gold-light);}
+  .hero p{font-size:16px; color:#C7CDDA; max-width:540px; margin:0 auto; line-height:1.55;}
+  .hero-accent{ position:absolute; top:50%; right:-20px; transform:translateY(-50%); width:210px; opacity:.18; pointer-events:none; z-index:0; }
+  @media (max-width:760px){ .hero-accent{ display:none; } }
+
+  .card{max-width:920px; margin:-56px auto 64px; background:#fff; border-radius:18px; box-shadow:0 24px 60px -20px rgba(16,30,51,.35); position:relative; z-index:2; overflow:hidden; display:grid; grid-template-columns:1fr 1fr;}
+  @media (max-width:760px){ .card{grid-template-columns:1fr;} }
+  .controls{padding:36px 32px; border-right:1px solid var(--line);}
+  @media (max-width:760px){ .controls{border-right:none; border-bottom:1px solid var(--line);} }
+  .field{margin-bottom:24px;}
+  .field label{display:flex; justify-content:space-between; align-items:baseline; font-size:13px; color:var(--muted); margin-bottom:8px; font-weight:600;}
+  .field .value{font-family:'Fraunces',serif; font-size:18px; color:var(--navy); font-weight:600;}
+  .field .hint{font-size:11.5px; color:var(--muted); margin-top:6px; line-height:1.4;}
+  input[type=range]{width:100%; -webkit-appearance:none; height:4px; background:var(--line); border-radius:4px; outline:none;}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none; width:18px; height:18px; border-radius:50%; background:var(--gold); cursor:pointer; border:3px solid #fff; box-shadow:0 0 0 1px var(--gold);}
+  input[type=range]::-moz-range-thumb{width:18px; height:18px; border-radius:50%; background:var(--gold); cursor:pointer; border:3px solid #fff; box-shadow:0 0 0 1px var(--gold);}
+
+  .results{padding:36px 32px; background:var(--paper); display:flex; flex-direction:column;}
+  .result-headline{font-size:13px; color:var(--muted); font-weight:600; margin-bottom:6px;}
+  .result-amount{font-family:'Fraunces',serif; font-weight:600; font-size:clamp(30px,4vw,40px); color:var(--red); line-height:1.05; margin-bottom:4px;}
+  .result-sub{font-size:13px; color:var(--muted); margin-bottom:20px;}
+
+  .bar{height:14px; border-radius:8px; overflow:hidden; display:flex; margin-bottom:20px; background:var(--line);}
+  .bar div{height:100%;}
+
+  .breakdown{display:flex; flex-direction:column; gap:12px; margin-bottom:8px;}
+  .row{display:flex; justify-content:space-between; align-items:center; font-size:13.5px;}
+  .row .label{display:flex; align-items:center; color:var(--ink);}
+  .row .dot{width:9px; height:9px; border-radius:50%; display:inline-block; margin-right:9px;}
+  .row .num{font-weight:600; color:var(--navy);}
+  hr.sep{border:none; border-top:1px solid var(--line); margin:18px 0;}
+  .net-row{display:flex; justify-content:space-between; align-items:center;}
+  .net-row .label{font-weight:600; color:var(--ink);}
+  .net-row .num{font-size:18px; font-family:'Fraunces',serif; font-weight:600; color:var(--green);}
+
+  .info-section{max-width:760px; margin:0 auto 70px; padding:0 24px;}
+  .info-section h2{font-size:22px; color:var(--navy); margin-bottom:14px; font-weight:500;}
+  .info-section p{font-size:14.5px; color:var(--ink); line-height:1.65; margin-bottom:14px;}
+  .callout{border-left:3px solid var(--gold); background:#FBF7EE; border-radius:8px; padding:16px 20px; font-size:13.5px; line-height:1.6; margin-bottom:14px;}
+  .callout b{color:var(--navy);}
+  .disclaimer{max-width:760px; margin:0 auto 50px; padding:0 24px; font-size:12px; color:var(--muted); text-align:center; font-style:italic;}
+</style>
+</head>
+<body>
+
+<div class="topbar"><a href="index.html">← Retour à Éducateur Financier</a></div>
+
+<div class="hero">
+  <img class="hero-accent" src="images/hero-tax-accent.svg" alt="" aria-hidden="true">
+  <div class="hero-inner">
+    <div class="eyebrow">Calculateur gratuit — Fiscalité belge 2026</div>
+    <h1>Combien te <em>coûtera</em> ta plus-value ?</h1>
+    <p>Ajuste ta plus-value réalisée pour estimer l'impôt dû selon la réforme belge sur les plus-values financières.</p>
+  </div>
+</div>
+
+<div class="card">
+  <div class="controls">
+    <div class="field">
+      <label>Plus-value réalisée cette année <span class="value" id="v-gain">5 000 €</span></label>
+      <input type="range" id="gain" min="0" max="100000" step="250" value="5000">
+    </div>
+    <div class="field">
+      <label>Exonération annuelle disponible <span class="value" id="v-exempt">10 000 €</span></label>
+      <input type="range" id="exempt" min="0" max="15000" step="250" value="10000">
+      <div class="hint">Montant indicatif basé sur la réforme 2026 — vérifie le plafond en vigueur, il peut être indexé chaque année.</div>
+    </div>
+    <div class="field">
+      <label>Taux d'imposition <span class="value" id="v-rate">10 %</span></label>
+      <input type="range" id="rate" min="5" max="15" step="0.5" value="10">
+      <div class="hint">10 % est le taux de base annoncé pour la réforme — ajuste-le si les règles évoluent d'ici ta déclaration.</div>
+    </div>
+  </div>
+
+  <div class="results">
+    <div class="result-headline">Impôt estimé sur ta plus-value</div>
+    <div class="result-amount" id="r-tax">0 €</div>
+    <div class="result-sub" id="r-tax-sub">Taux effectif : 0 % de la plus-value totale</div>
+
+    <div class="bar" id="bar">
+      <div style="background:var(--green)" id="bar-exempt"></div>
+      <div style="background:var(--red)" id="bar-taxed"></div>
+    </div>
+
+    <div class="breakdown">
+      <div class="row"><span class="label"><span class="dot" style="background:var(--green)"></span>Part exonérée</span><span class="num" id="r-exempt-part">5 000 €</span></div>
+      <div class="row"><span class="label"><span class="dot" style="background:var(--red)"></span>Part imposable</span><span class="num" id="r-taxed-part">0 €</span></div>
+    </div>
+    <hr class="sep">
+    <div class="net-row">
+      <span class="label">Plus-value nette après impôt</span>
+      <span class="num" id="r-net">5 000 €</span>
+    </div>
+  </div>
+</div>
+
+<div class="info-section">
+  <h2>Comment ça fonctionne</h2>
+  <p>Depuis 2026, la Belgique applique une taxe sur les plus-values réalisées lors de la vente d'actifs financiers (actions, ETF, obligations...). Chaque contribuable dispose d'une <b>exonération annuelle</b> : en dessous de ce montant, la plus-value réalisée dans l'année n'est pas taxée. Au-delà, seule la partie qui dépasse ce plafond est soumise au taux d'imposition.</p>
+  <p>Concrètement : si ta plus-value totale de l'année est inférieure à ton exonération disponible, tu ne paies rien. Si elle la dépasse, l'impôt ne porte que sur l'excédent — pas sur la totalité de la plus-value.</p>
+  <div class="callout">
+    <b>À garder en tête :</b> ce calculateur simplifie volontairement les règles pour donner un ordre de grandeur. Les modalités exactes (méthode de calcul de la base imposable, traitement des moins-values, règles transitoires pour les plus-values antérieures à la réforme, cas des participations importantes) peuvent varier selon ta situation — vérifie toujours les règles en vigueur au moment de ta déclaration, ou fais-toi accompagner.
+  </div>
+  <div style="text-align:center; margin-top:28px;">
+    <a href="coaching.html" style="display:inline-flex; align-items:center; gap:8px; padding:13px 26px; border-radius:9px; font-weight:600; font-size:14px; text-decoration:none; background:var(--navy); color:#fff;">Structurer ma fiscalité avec un accompagnement →</a>
+  </div>
+</div>
+
+<div class="disclaimer">
+  Outil éducatif basé sur une simplification de la réforme belge 2026 sur les plus-values. Ceci n'est pas un conseil fiscal personnalisé — vérifie les règles exactes applicables à ta situation.
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+const fmt = n => Math.round(n).toLocaleString('fr-BE') + ' €';
+
+const gainEl = $('gain'), exemptEl = $('exempt'), rateEl = $('rate');
+
+function compute(){
+  const gain = +gainEl.value;
+  const exempt = +exemptEl.value;
+  const rate = +rateEl.value / 100;
+
+  $('v-gain').textContent = fmt(gain);
+  $('v-exempt').textContent = fmt(exempt);
+  $('v-rate').textContent = rateEl.value + ' %';
+
+  const exemptPart = Math.min(gain, exempt);
+  const taxedPart = Math.max(0, gain - exempt);
+  const tax = taxedPart * rate;
+  const net = gain - tax;
+  const effectiveRate = gain > 0 ? (tax / gain) * 100 : 0;
+
+  $('r-tax').textContent = fmt(tax);
+  $('r-tax-sub').textContent = `Taux effectif : ${effectiveRate.toFixed(1)} % de la plus-value totale`;
+  $('r-exempt-part').textContent = fmt(exemptPart);
+  $('r-taxed-part').textContent = fmt(taxedPart);
+  $('r-net').textContent = fmt(net);
+
+  const total = Math.max(gain, 1);
+  $('bar-exempt').style.width = (exemptPart / total * 100) + '%';
+  $('bar-taxed').style.width = (taxedPart / total * 100) + '%';
+}
+
+[gainEl, exemptEl, rateEl].forEach(el => el.addEventListener('input', compute));
+compute();
+</script>
+
+</body>
+</html>
