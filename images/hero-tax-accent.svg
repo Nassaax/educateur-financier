@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" role="img" aria-label="Illustration décorative d'un symbole pourcentage et d'une pièce">
+  <circle cx="95" cy="95" r="34" fill="none" stroke="#F1EFEA" stroke-width="10"/>
+  <circle cx="205" cy="205" r="34" fill="none" stroke="#F1EFEA" stroke-width="10"/>
+  <line x1="90" y1="220" x2="220" y2="80" stroke="#F1EFEA" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="235" cy="70" r="26" fill="#F1EFEA" opacity=".9"/>
+  <text x="235" y="79" font-family="Georgia, serif" font-size="26" font-weight="700" fill="#101E33" text-anchor="middle">€</text>
+</svg>
