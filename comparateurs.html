@@ -32,7 +32,7 @@
 <header class="site-header">
   <div class="nav-inner">
     <a href="index.html" class="brand"><span class="dot">●</span> Éducateur Financier</a>
-    <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">☰</button>
     <ul class="nav-links" id="navLinks">
       <li><a href="index.html">Accueil</a></li>
       <li><a href="apropos.html">À propos</a></li>
@@ -126,12 +126,12 @@
 
     <div class="grid grid-2">
       <div class="card">
-        <div class="icon">🧩</div>
+        <div class="icon" aria-hidden="true">🧩</div>
         <h3>Taux de base + prime de fidélité</h3>
         <p>Un compte d'épargne réglementé belge combine un taux de base (immédiat) et une prime de fidélité (acquise après 12 mois sans retrait). Un compte affichant un taux total plus bas peut parfois rapporter davantage net qu'un concurrent tape-à-l'œil, selon la répartition entre les deux.</p>
       </div>
       <div class="card">
-        <div class="icon">🛡️</div>
+        <div class="icon" aria-hidden="true">🛡️</div>
         <h3>Exonération fiscale</h3>
         <p>Les intérêts des comptes d'épargne réglementés belges sont exonérés de précompte mobilier jusqu'à un certain montant par an et par personne. Au-delà, le précompte de 30 % s'applique — un point à vérifier si tu épargnes des montants importants.</p>
       </div>
@@ -176,8 +176,9 @@
 </footer>
 
 <script>
-document.getElementById('navToggle').addEventListener('click', () => {
-  document.getElementById('navLinks').classList.toggle('open');
+document.getElementById('navToggle').addEventListener('click', function() {
+  const open = document.getElementById('navLinks').classList.toggle('open');
+  this.setAttribute('aria-expanded', open);
 });
 </script>
 

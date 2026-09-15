@@ -35,7 +35,7 @@
 <header class="site-header">
   <div class="nav-inner">
     <a href="index.html" class="brand"><span class="dot">●</span> Éducateur Financier</a>
-    <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">☰</button>
     <ul class="nav-links" id="navLinks">
       <li><a href="index.html">Accueil</a></li>
       <li><a href="apropos.html">À propos</a></li>
@@ -128,8 +128,9 @@ function render(filter=''){
 document.getElementById('search').addEventListener('input', e => render(e.target.value));
 render();
 
-document.getElementById('navToggle').addEventListener('click', () => {
-  document.getElementById('navLinks').classList.toggle('open');
+document.getElementById('navToggle').addEventListener('click', function() {
+  const open = document.getElementById('navLinks').classList.toggle('open');
+  this.setAttribute('aria-expanded', open);
 });
 </script>
 
