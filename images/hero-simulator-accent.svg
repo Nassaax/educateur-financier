@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" role="img" aria-label="Illustration décorative de curseurs de simulation et d'une courbe ascendante">
+  <path d="M30 190 L90 160 L150 170 L210 110 L270 70" fill="none" stroke="#F1EFEA" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <g stroke-linecap="round">
+    <line x1="40" y1="220" x2="260" y2="220" stroke="#F1EFEA" stroke-width="7" opacity=".4"/>
+    <circle cx="160" cy="220" r="15" fill="#F1EFEA"/>
+
+    <line x1="40" y1="255" x2="260" y2="255" stroke="#F1EFEA" stroke-width="7" opacity=".4"/>
+    <circle cx="100" cy="255" r="15" fill="#F1EFEA"/>
+  </g>
+</svg>

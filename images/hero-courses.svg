@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 420" role="img" aria-label="Illustration d'un calendrier avec un bouton de lecture représentant les cours en direct">
+  <defs>
+    <linearGradient id="gGold5" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#E0C48A"/>
+      <stop offset="100%" stop-color="#C6A15B"/>
+    </linearGradient>
+    <filter id="gBlur5" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="36"/>
+    </filter>
+  </defs>
+
+  <circle cx="400" cy="90" r="120" fill="#E0C48A" opacity=".26" filter="url(#gBlur5)"/>
+  <circle cx="80" cy="350" r="110" fill="#3A5A8A" opacity=".22" filter="url(#gBlur5)"/>
+
+  <rect x="56" y="60" width="368" height="300" rx="28" fill="#FFFFFF" fill-opacity=".07" stroke="#FFFFFF" stroke-opacity=".18" stroke-width="1.5"/>
+
+  <rect x="150" y="140" width="150" height="140" rx="14" fill="#182C4A" stroke="#F1EFEA" stroke-opacity=".35" stroke-width="2"/>
+  <rect x="150" y="140" width="150" height="34" rx="14" fill="url(#gGold5)"/>
+  <line x1="180" y1="128" x2="180" y2="152" stroke="#F1EFEA" stroke-width="4" stroke-linecap="round"/>
+  <line x1="270" y1="128" x2="270" y2="152" stroke="#F1EFEA" stroke-width="4" stroke-linecap="round"/>
+
+  <g fill="#F1EFEA" opacity=".55">
+    <circle cx="175" cy="200" r="5"/><circle cx="200" cy="200" r="5"/><circle cx="225" cy="200" r="5"/><circle cx="250" cy="200" r="5"/><circle cx="275" cy="200" r="5"/>
+    <circle cx="175" cy="225" r="5"/><circle cx="200" cy="225" r="5"/><circle cx="250" cy="225" r="5"/><circle cx="275" cy="225" r="5"/>
+    <circle cx="175" cy="250" r="5"/><circle cx="200" cy="250" r="5"/><circle cx="225" cy="250" r="5"/>
+  </g>
+  <circle cx="225" cy="225" r="9" fill="url(#gGold5)"/>
+
+  <circle cx="322" cy="255" r="42" fill="#182C4A" stroke="url(#gGold5)" stroke-width="3"/>
+  <path d="M312 238 L340 255 L312 272 Z" fill="url(#gGold5)"/>
+</svg>

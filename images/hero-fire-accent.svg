@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" role="img" aria-label="Illustration décorative d'une flamme et d'une courbe ascendante">
+  <path d="M150 40 C 120 90 100 120 100 160 C 100 205 125 235 150 235 C 175 235 200 205 200 160 C 200 175 190 190 178 195 C 190 165 175 130 150 100 C 155 130 140 145 130 160 C 122 172 122 190 132 202 C 118 195 108 178 108 158 C 108 110 130 75 150 40 Z" fill="#F1EFEA"/>
+  <path d="M40 260 L90 220 L140 240 L200 175 L260 130" fill="none" stroke="#F1EFEA" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="2 16"/>
+  <path d="M240 132 L260 130 L256 150" fill="none" stroke="#F1EFEA" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
