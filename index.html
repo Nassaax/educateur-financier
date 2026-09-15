@@ -216,10 +216,11 @@ document.getElementById('navToggle').addEventListener('click', () => {
 });
 
 /* --- Newsletter signup ---
-   Remplace NEWSLETTER_ENDPOINT par l'URL de ton formulaire (Formspree, Brevo, Mailchimp, ConvertKit...).
-   Exemple Formspree : "https://formspree.io/f/xxxxxxx"
+   Connecté à Supabase (base de données gratuite) — les emails sont stockés
+   dans la table "newsletter_subscribers" du projet "educateur-financier".
 */
-const NEWSLETTER_ENDPOINT = ""; // <-- colle ton URL de formulaire ici
+const SUPABASE_URL = "https://jkisvtrokovlwgezkbpa.supabase.co";
+const SUPABASE_KEY = "sb_publishable_Xz0-2WcmXttgEmgsnPV-GA_-THrEp34";
 
 const newsletterForm = document.getElementById('newsletter-form');
 if (newsletterForm) {
@@ -231,20 +232,30 @@ if (newsletterForm) {
     btn.disabled = true;
     btn.textContent = '...';
 
-    if (NEWSLETTER_ENDPOINT) {
-      try {
-        await fetch(NEWSLETTER_ENDPOINT, {
-          method: 'POST',
-          headers: {'Content-Type':'application/json', 'Accept':'application/json'},
-          body: JSON.stringify({ email, source: 'newsletter-accueil' })
-        });
-      } catch (err) {
-        // On affiche quand même le message de confirmation pour ne pas bloquer l'utilisateur.
+    try {
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/newsletter_subscribers`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': SUPABASE_KEY,
+          'Authorization': `Bearer ${SUPABASE_KEY}`,
+          'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify({ email, source: 'newsletter-accueil' })
+      });
+      // Un code 409 signifie que cet email est déjà inscrit — on affiche quand même la confirmation.
+      if (!res.ok && res.status !== 409) {
+        throw new Error('Erreur d\'inscription');
       }
+      newsletterForm.style.display = 'none';
+      msg.style.display = 'block';
+    } catch (err) {
+      btn.disabled = false;
+      btn.textContent = 'S\'inscrire';
+      msg.textContent = 'Une erreur est survenue — réessaie dans un instant.';
+      msg.style.color = '#E0A8A8';
+      msg.style.display = 'block';
     }
-
-    newsletterForm.style.display = 'none';
-    msg.style.display = 'block';
   });
 }
 </script>
