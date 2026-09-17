@@ -91,18 +91,37 @@ async function loadQuotes(){
     grid.innerHTML = '';
     data.quotes.forEach(q => {
       const card = document.createElement('div');
+      // Construit le DOM avec textContent plutôt qu'innerHTML : q.currency vient
+      // d'une API externe (Yahoo Finance) et ne doit jamais être interprété comme du HTML.
       if(q.error){
         card.className = 'quote-card error';
-        card.innerHTML = `<div class="q-label">${q.label}</div><div>Donnée indisponible pour l'instant</div>`;
+        const label = document.createElement('div');
+        label.className = 'q-label';
+        label.textContent = q.label;
+        const msg = document.createElement('div');
+        msg.textContent = "Donnée indisponible pour l'instant";
+        card.append(label, msg);
       } else {
         const dir = q.change >= 0 ? 'up' : 'down';
         const arrow = q.change >= 0 ? '▲' : '▼';
         card.className = 'quote-card';
-        card.innerHTML = `
-          <div class="q-label">${q.label}</div>
-          <div class="q-price">${q.price.toLocaleString('fr-BE', {maximumFractionDigits:2})} <span style="font-size:14px; color:var(--muted);">${q.currency||''}</span></div>
-          <div class="q-change ${dir}">${arrow} ${q.change.toFixed(2)} (${q.changePct.toFixed(2)}%)</div>
-        `;
+
+        const label = document.createElement('div');
+        label.className = 'q-label';
+        label.textContent = q.label;
+
+        const priceRow = document.createElement('div');
+        priceRow.className = 'q-price';
+        const currencySpan = document.createElement('span');
+        currencySpan.style.cssText = 'font-size:14px; color:var(--muted);';
+        currencySpan.textContent = q.currency || '';
+        priceRow.append(q.price.toLocaleString('fr-BE', {maximumFractionDigits:2}) + ' ', currencySpan);
+
+        const changeRow = document.createElement('div');
+        changeRow.className = `q-change ${dir}`;
+        changeRow.textContent = `${arrow} ${q.change.toFixed(2)} (${q.changePct.toFixed(2)}%)`;
+
+        card.append(label, priceRow, changeRow);
       }
       grid.appendChild(card);
     });
