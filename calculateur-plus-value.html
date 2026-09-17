@@ -74,6 +74,9 @@
   .callout{border-left:3px solid var(--gold); background:#FBF7EE; border-radius:8px; padding:16px 20px; font-size:13.5px; line-height:1.6; margin-bottom:14px;}
   .callout b{color:var(--navy);}
   .disclaimer{max-width:760px; margin:0 auto 50px; padding:0 24px; font-size:12px; color:var(--muted); text-align:center; font-style:italic;}
+  @keyframes pulseValue{ 0%{transform:scale(1);} 40%{transform:scale(1.04);} 100%{transform:scale(1);} }
+  .pulse{ animation:pulseValue .35s ease; }
+  @media (prefers-reduced-motion: reduce){ .pulse{ animation:none; } }
 </style>
 </head>
 <body>
@@ -89,7 +92,7 @@
   </div>
 </div>
 
-<div class="card">
+<div class="card reveal">
   <div class="controls">
     <div class="field">
       <label>Plus-value réalisée cette année <span class="value" id="v-gain">5 000 €</span></label>
@@ -166,7 +169,9 @@ function compute(){
   const net = gain - tax;
   const effectiveRate = gain > 0 ? (tax / gain) * 100 : 0;
 
-  $('r-tax').textContent = fmt(tax);
+  const taxEl = $('r-tax');
+  taxEl.textContent = fmt(tax);
+  taxEl.classList.remove('pulse'); void taxEl.offsetWidth; taxEl.classList.add('pulse');
   $('r-tax-sub').textContent = `Taux effectif : ${effectiveRate.toFixed(1)} % de la plus-value totale`;
   $('r-exempt-part').textContent = fmt(exemptPart);
   $('r-taxed-part').textContent = fmt(taxedPart);
@@ -180,6 +185,8 @@ function compute(){
 [gainEl, exemptEl, rateEl].forEach(el => el.addEventListener('input', compute));
 compute();
 </script>
+
+<script src="animations.js"></script>
 
 </body>
 </html>

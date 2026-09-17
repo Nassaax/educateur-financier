@@ -39,20 +39,20 @@
 
 <section class="section">
   <div class="container">
-    <div class="grid grid-3">
-      <div class="card">
+    <div class="grid grid-3 reveal-group">
+      <div class="card reveal">
         <div class="icon" aria-hidden="true">🧭</div>
         <h3>Par où commencer ?</h3>
         <p>Le guide étape par étape pour te lancer si tu pars de zéro.</p>
         <a href="commencer.html" class="card-link">Lire le guide →</a>
       </div>
-      <div class="card">
+      <div class="card reveal">
         <div class="icon" aria-hidden="true">🧮</div>
         <h3>Outils gratuits</h3>
         <p>Simulateur d'épargne, quiz de profil, calculateur FIRE.</p>
         <a href="outils.html" class="card-link">Voir les outils →</a>
       </div>
-      <div class="card">
+      <div class="card reveal">
         <div class="icon" aria-hidden="true">📚</div>
         <h3>Conseils pratiques</h3>
         <p>Fiscalité belge, erreurs à éviter, glossaire financier.</p>
@@ -92,6 +92,8 @@ document.getElementById('navToggle').addEventListener('click', function() {
   this.setAttribute('aria-expanded', open);
 });
 </script>
+
+<script src="animations.js"></script>
 
 </body>
 </html>

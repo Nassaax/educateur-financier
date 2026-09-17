@@ -261,3 +261,38 @@ footer.site-footer{
   width:240px; opacity:.20; pointer-events:none; z-index:0;
 }
 @media (max-width:760px){ .hero-accent{ display:none; } }
+
+/* ---------- Motion : apparitions au scroll ---------- */
+.reveal{
+  opacity:0; transform:translateY(22px);
+  transition:opacity .6s cubic-bezier(.22,.61,.36,1), transform .6s cubic-bezier(.22,.61,.36,1);
+}
+.reveal.is-visible{ opacity:1; transform:translateY(0); }
+.reveal-group .reveal:nth-child(2){ transition-delay:.08s; }
+.reveal-group .reveal:nth-child(3){ transition-delay:.16s; }
+.reveal-group .reveal:nth-child(4){ transition-delay:.24s; }
+.reveal-group .reveal:nth-child(5){ transition-delay:.32s; }
+.reveal-group .reveal:nth-child(6){ transition-delay:.4s; }
+
+/* ---------- Motion : flottement doux des illustrations hero ---------- */
+@keyframes floatY{
+  0%, 100%{ transform:translateY(0); }
+  50%{ transform:translateY(-10px); }
+}
+.hero-media img{ animation:floatY 5.5s ease-in-out infinite; }
+.hero-accent{ animation:floatY 7s ease-in-out infinite; }
+
+/* ---------- Motion : logo ---------- */
+.brand-mark{ transition:transform .35s cubic-bezier(.34,1.56,.64,1); }
+.brand:hover .brand-mark{ transform:rotate(-8deg) scale(1.08); }
+
+/* ---------- Motion : FAQ accordéon animé (hauteur gérée en JS, voir animations.js) ---------- */
+.faq-item p{ overflow:hidden; will-change:height; }
+
+/* ---------- Accessibilité : désactive les animations si demandé ---------- */
+@media (prefers-reduced-motion: reduce){
+  .reveal{ opacity:1; transform:none; transition:none; }
+  .hero-media img, .hero-accent{ animation:none; }
+  .brand:hover .brand-mark{ transform:none; }
+  *{ scroll-behavior:auto !important; }
+}

@@ -69,6 +69,9 @@
   .info-section p{font-size:14.5px; color:var(--ink); line-height:1.65; margin-bottom:14px;}
   .callout{border-left:3px solid var(--gold); background:#FBF7EE; border-radius:8px; padding:16px 20px; font-size:13.5px; line-height:1.6;}
   .disclaimer{max-width:760px; margin:0 auto 50px; padding:0 24px; font-size:12px; color:var(--muted); text-align:center; font-style:italic;}
+  @keyframes pulseValue{ 0%{transform:scale(1);} 40%{transform:scale(1.04);} 100%{transform:scale(1);} }
+  .pulse{ animation:pulseValue .35s ease; }
+  @media (prefers-reduced-motion: reduce){ .pulse{ animation:none; } }
 </style>
 </head>
 <body>
@@ -84,7 +87,7 @@
   </div>
 </div>
 
-<div class="card">
+<div class="card reveal">
   <div class="controls">
     <div class="field">
       <label>Dépenses mensuelles actuelles <span class="value" id="v-expenses">1 800 €</span></label>
@@ -167,7 +170,9 @@ function compute(){
   const annualExpenses = expenses * 12;
   const target = annualExpenses / withdrawRate;
 
-  $('r-target').textContent = fmt(target);
+  const targetEl = $('r-target');
+  targetEl.textContent = fmt(target);
+  targetEl.classList.remove('pulse'); void targetEl.offsetWidth; targetEl.classList.add('pulse');
   $('r-target-sub').textContent = `${(1/withdrawRate).toFixed(1)}× tes dépenses annuelles, pour un retrait de ${withdrawEl.value} %/an`;
   $('r-annual').textContent = fmt(annualExpenses);
   $('r-current-out').textContent = fmt(current);
@@ -205,6 +210,8 @@ function compute(){
 [expensesEl, withdrawEl, currentEl, monthlyEl, rateEl].forEach(el => el.addEventListener('input', compute));
 compute();
 </script>
+
+<script src="animations.js"></script>
 
 </body>
 </html>
