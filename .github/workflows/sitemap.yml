@@ -1,0 +1,34 @@
+name: Régénérer le sitemap
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "**.html"
+      - "scripts/generate_sitemap.py"
+
+permissions:
+  contents: write
+
+jobs:
+  sitemap:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - name: Régénérer sitemap.xml
+        run: python3 scripts/generate_sitemap.py
+
+      - name: Commit si changé
+        run: |
+          if git diff --quiet -- sitemap.xml; then
+            echo "sitemap.xml déjà à jour"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add sitemap.xml
+          git commit -m "chore: régénère sitemap.xml [skip ci]"
+          git push
