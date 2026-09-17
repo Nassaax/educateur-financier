@@ -218,9 +218,21 @@
       <h2>Réserve ton appel découverte</h2>
       <p>Sans engagement — on regarde ensemble si l'accompagnement répond à ton besoin.</p>
     </div>
-    <p style="font-size:13.5px; color:var(--muted); max-width:480px; margin:0 auto 24px; line-height:1.6;">Comptable belge passionné de finance, j'aide les débutants à structurer leur épargne et à investir sereinement en Belgique, sans jargon.</p>
-
     <a href="https://cal.com/educateurfinancier" target="_blank" rel="noopener" class="btn btn-primary" style="background:var(--navy); color:#fff;">📅 Réserver un créneau →</a>
+
+    <div style="margin-top:44px; text-align:left; background:#fff; border:1px solid var(--line); border-radius:14px; padding:28px 26px;">
+      <h3 style="margin:0 0 6px; font-size:16px; color:var(--navy);">Pas encore prêt(e) à réserver ?</h3>
+      <p style="margin:0 0 18px; font-size:13.5px; color:var(--muted); line-height:1.6;">Dis-nous où tu en es — ça nous permet de te recontacter avec une réponse utile, même sans appel programmé.</p>
+      <form id="coaching-lead-form">
+        <div style="display:flex; gap:12px; flex-wrap:wrap; margin-bottom:12px;">
+          <input type="text" id="lead-name" placeholder="Ton prénom" required style="flex:1; min-width:160px; padding:12px 14px; border:1.5px solid var(--line); border-radius:9px; font-size:14px; font-family:'Inter',sans-serif;">
+          <input type="email" id="lead-email" placeholder="ton@email.com" required style="flex:1; min-width:160px; padding:12px 14px; border:1.5px solid var(--line); border-radius:9px; font-size:14px; font-family:'Inter',sans-serif;">
+        </div>
+        <textarea id="lead-message" placeholder="Où en es-tu ? Qu'est-ce qui t'amène ?" rows="3" style="width:100%; padding:12px 14px; border:1.5px solid var(--line); border-radius:9px; font-size:14px; font-family:'Inter',sans-serif; resize:vertical; margin-bottom:14px;"></textarea>
+        <button type="submit" class="btn btn-primary" style="background:var(--navy); color:#fff; width:100%; justify-content:center;">Envoyer →</button>
+      </form>
+      <p id="lead-msg" style="display:none; font-size:13.5px; color:var(--green); margin:14px 0 0; text-align:center;">Merci ! On revient vers toi rapidement.</p>
+    </div>
 
     <div class="callout" style="margin-top:36px; text-align:left;">
       <b>À noter :</b> cet accompagnement est un service d'éducation financière et d'aide à la structuration de ton épargne. Il ne remplace pas les conseils d'un conseiller fiscal ou d'un planificateur financier agréé pour ta situation personnelle spécifique.
@@ -254,6 +266,50 @@ document.getElementById('navToggle').addEventListener('click', function() {
   const open = document.getElementById('navLinks').classList.toggle('open');
   this.setAttribute('aria-expanded', open);
 });
+
+/* --- Formulaire de qualification coaching ---
+   Connecté à Supabase — les demandes sont stockées dans la table
+   "coaching_leads" du projet "educateur-financier".
+*/
+const SUPABASE_URL = "https://jkisvtrokovlwgezkbpa.supabase.co";
+const SUPABASE_KEY = "sb_publishable_Xz0-2WcmXttgEmgsnPV-GA_-THrEp34";
+
+const leadForm = document.getElementById('coaching-lead-form');
+if (leadForm) {
+  leadForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const name = document.getElementById('lead-name').value.trim();
+    const email = document.getElementById('lead-email').value.trim();
+    const message = document.getElementById('lead-message').value.trim();
+    const msg = document.getElementById('lead-msg');
+    const btn = leadForm.querySelector('button');
+    btn.disabled = true;
+    btn.textContent = '...';
+
+    try {
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/coaching_leads`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': SUPABASE_KEY,
+          'Authorization': `Bearer ${SUPABASE_KEY}`,
+          'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify({ name, email, message, source: 'coaching-page' })
+      });
+      if (!res.ok) throw new Error('Erreur d\'envoi');
+
+      leadForm.style.display = 'none';
+      msg.style.display = 'block';
+    } catch (err) {
+      btn.disabled = false;
+      btn.textContent = 'Envoyer →';
+      msg.textContent = 'Une erreur est survenue — réessaie dans un instant.';
+      msg.style.color = '#B14545';
+      msg.style.display = 'block';
+    }
+  });
+}
 </script>
 
 </body>
