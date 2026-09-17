@@ -1,0 +1,27 @@
+name: Bloquer les liens placeholder
+
+on:
+  pull_request:
+    paths:
+      - "**.html"
+
+jobs:
+  check-placeholder-links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # Ne regarde que les lignes AJOUTÉES par cette PR, pas les href="#"
+      # déjà présents ailleurs dans le repo (dette connue, à traiter séparément).
+      - name: Chercher les nouveaux href="#" introduits par cette PR
+        run: |
+          added=$(git diff --unified=0 "origin/${{ github.base_ref }}...HEAD" -- '*.html' \
+            | grep '^+' | grep -vF '+++' | grep -F 'href="#"' || true)
+          if [ -n "$added" ]; then
+            echo "::error::Cette PR introduit un ou des liens href=\"#\" non résolus. Remplace-les par la vraie URL avant de merger."
+            echo "$added"
+            exit 1
+          fi
+          echo "Aucun nouveau lien placeholder introduit par cette PR."
