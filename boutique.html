@@ -52,21 +52,21 @@
 
 <section class="section">
   <div class="container">
-    <div class="grid grid-3">
-      <div class="card">
+    <div class="grid grid-3 reveal-group">
+      <div class="card reveal">
         <div class="icon" aria-hidden="true">📊</div>
         <h3>Simulateur Épargne & Portefeuille ETF — Excel</h3>
         <p>4 onglets, formules automatiques, compatible Excel & Google Sheets.</p>
         <a href="downloads/Simulateur_Epargne_ETF.xlsx" class="card-link" download>Télécharger (.xlsx) →</a>
       </div>
-      <div class="card">
+      <div class="card reveal">
         <div class="icon" aria-hidden="true">🗂️</div>
         <h3>Simulateur Épargne & Portefeuille ETF — Notion</h3>
         <p>3 bases de données connectées, duplication en 1 clic dans ton propre espace.</p>
         <!-- Remplace le # par le lien public de duplication de ta page Notion -->
         <a href="#" class="card-link">Dupliquer le template →</a>
       </div>
-      <div class="card">
+      <div class="card reveal">
         <div class="icon" aria-hidden="true">🇧🇪</div>
         <h3>Guide Fiscal ETF Belgique 2026</h3>
         <p>10 pages pour comprendre et optimiser légalement ta fiscalité d'investisseur.</p>
@@ -82,7 +82,7 @@
 
 <section class="section" style="background:#fff; border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
   <div class="container" style="max-width:760px;">
-    <div class="card" style="display:flex; gap:24px; align-items:center; flex-wrap:wrap; padding:32px;">
+    <div class="card reveal" style="display:flex; gap:24px; align-items:center; flex-wrap:wrap; padding:32px;">
       <div style="flex:1; min-width:240px;">
         <div class="icon" aria-hidden="true">🚀</div>
         <h3 style="margin-bottom:6px;">Envie d'aller plus loin, seul(e) ?</h3>
@@ -120,6 +120,8 @@ document.getElementById('navToggle').addEventListener('click', function() {
   this.setAttribute('aria-expanded', open);
 });
 </script>
+
+<script src="animations.js"></script>
 
 </body>
 </html>

@@ -95,25 +95,25 @@
 
 <section class="section">
   <div class="container">
-    <div class="section-head">
+    <div class="section-head reveal">
       <div class="kicker">Ce que tu trouveras ici</div>
       <h2>Tout pour piloter ton épargne</h2>
       <p>Un seul endroit pour simuler, suivre et comprendre — sans jargon inutile.</p>
     </div>
-    <div class="grid grid-3">
-      <div class="card">
+    <div class="grid grid-3 reveal-group">
+      <div class="card reveal">
         <div class="icon" aria-hidden="true">🧮</div>
         <h3>Outils gratuits</h3>
         <p>Simulateur d'épargne, calculateur d'intérêts composés, et bientôt un comparateur de brokers belges.</p>
         <a href="outils.html" class="card-link">Voir les outils →</a>
       </div>
-      <div class="card">
+      <div class="card reveal">
         <div class="icon" aria-hidden="true">📈</div>
         <h3>Cours en direct</h3>
         <p>Les indices et ETF les plus suivis, mis à jour en continu, pour garder un œil sur les marchés.</p>
         <a href="cours.html" class="card-link">Voir les cours →</a>
       </div>
-      <div class="card">
+      <div class="card reveal">
         <div class="icon" aria-hidden="true">📚</div>
         <h3>Conseils pratiques</h3>
         <p>Fiscalité belge, comptes d'épargne, erreurs à éviter — des guides courts et actionnables.</p>
@@ -150,12 +150,12 @@
 
 <section class="section" style="background:#fff; border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
   <div class="container">
-    <div class="section-head">
+    <div class="section-head reveal">
       <div class="kicker">Retours</div>
       <h2>Ce qu'en disent les personnes accompagnées</h2>
     </div>
-    <div class="testimonials">
-      <div class="testimonial-card">
+    <div class="testimonials reveal-group">
+      <div class="testimonial-card reveal">
         <div class="testimonial-stars">★★★★★</div>
         <div class="testimonial-quote">"Avant l'accompagnement, j'avançais un peu au hasard avec mes économies. Les séances m'ont vraiment aidé à structurer ma réflexion et à comprendre pourquoi je faisais les choses, pas juste comment. J'ai enfin une vision claire de ma stratégie."</div>
         <div class="testimonial-author">
@@ -166,7 +166,7 @@
           </div>
         </div>
       </div>
-      <div class="testimonial-card">
+      <div class="testimonial-card reveal">
         <div class="testimonial-stars">★★★★★</div>
         <div class="testimonial-quote">"J'avais plein de craintes sur l'investissement que je n'osais pas exprimer ailleurs. Ici, j'ai pu poser toutes mes questions sans me sentir jugée, et j'ai eu des réponses claires et professionnelles à chaque fois. Ça change tout d'être vraiment écoutée."</div>
         <div class="testimonial-author">
@@ -177,7 +177,7 @@
           </div>
         </div>
       </div>
-      <div class="testimonial-card">
+      <div class="testimonial-card reveal">
         <div class="testimonial-stars">★★★★★</div>
         <div class="testimonial-quote">"Ce que j'ai le plus apprécié, c'est de pouvoir poser mes questions les plus bêtes sans crainte et obtenir une réponse sérieuse et posée. Je gère mon argent avec beaucoup plus de recul et de confiance aujourd'hui."</div>
         <div class="testimonial-author">
@@ -198,19 +198,19 @@
 
 <section class="section">
   <div class="container">
-    <div class="section-head">
+    <div class="section-head reveal">
       <div class="kicker">Tu préfères avancer seul(e) ?</div>
       <h2>Ressources et packs en libre-service</h2>
       <p>Pas encore prêt(e) pour un accompagnement personnalisé ? Commence par les ressources gratuites, ou passe à la vitesse supérieure avec le Pack Investisseur Belge.</p>
     </div>
-    <div class="grid grid-2">
-      <div class="card" style="text-align:center;">
+    <div class="grid grid-2 reveal-group">
+      <div class="card reveal" style="text-align:center;">
         <div class="icon" aria-hidden="true">📚</div>
         <h3>Ressources gratuites</h3>
         <p>Simulateur Excel & Notion, guide fiscal belge — 100 % gratuites, sans inscription.</p>
         <a href="boutique.html" class="card-link">Voir les ressources →</a>
       </div>
-      <div class="card" style="text-align:center;">
+      <div class="card reveal" style="text-align:center;">
         <div class="icon" aria-hidden="true">🚀</div>
         <h3>Le Pack Investisseur Belge</h3>
         <p>Simulateur multi-scénarios, comparateur de frais chiffré et suivi de portefeuille — à partir de 29 €, paiement unique.</p>
@@ -317,6 +317,8 @@ if (newsletterForm) {
   });
 }
 </script>
+
+<script src="animations.js"></script>
 
 </body>
 </html>

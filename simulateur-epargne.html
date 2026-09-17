@@ -189,6 +189,9 @@
   .shop-btn.gumroad{ background:var(--navy); color:#fff; }
   .shop-btn.etsy{ background:#fff; color:var(--navy); border:1.5px solid var(--navy); }
   .shop-btn:hover{ transform:translateY(-2px); box-shadow:0 10px 22px -10px rgba(16,30,51,.4); }
+  @keyframes pulseValue{ 0%{transform:scale(1);} 40%{transform:scale(1.04);} 100%{transform:scale(1);} }
+  .pulse{ animation:pulseValue .35s ease; }
+  @media (prefers-reduced-motion: reduce){ .pulse{ animation:none; } }
 </style>
 </head>
 <body>
@@ -206,7 +209,7 @@
   </div>
 </div>
 
-<div class="card">
+<div class="card reveal">
   <div class="controls">
     <div class="field">
       <label>Capital de départ <span class="value" id="v-capital">1 000 €</span></label>
@@ -298,7 +301,9 @@ function compute(){
   const interest = final - capital - versed;
   const real = final / Math.pow(1 + inflation, years);
 
-  $('r-final').textContent = fmt(final);
+  const finalEl = $('r-final');
+  finalEl.textContent = fmt(final);
+  finalEl.classList.remove('pulse'); void finalEl.offsetWidth; finalEl.classList.add('pulse');
   $('r-real').textContent = `≈ ${fmt(real)} en pouvoir d'achat actuel (inflation 2%)`;
   $('r-capital').textContent = fmt(capital);
   $('r-versed').textContent = fmt(versed);
@@ -341,6 +346,8 @@ function drawChart(history){
 [capitalEl, monthlyEl, rateEl, yearsEl].forEach(el => el.addEventListener('input', compute));
 compute();
 </script>
+
+<script src="animations.js"></script>
 
 </body>
 </html>

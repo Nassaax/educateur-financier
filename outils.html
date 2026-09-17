@@ -52,38 +52,38 @@
 
 <section class="section">
   <div class="container">
-    <div class="grid grid-2">
-      <div class="card">
+    <div class="grid grid-2 reveal-group">
+      <div class="card reveal">
         <div class="icon" aria-hidden="true">🧭</div>
         <h3>Quel profil d'investisseur es-tu ?</h3>
         <p>Un quiz de 2 minutes pour découvrir ta tolérance au risque et les prochaines étapes adaptées à ton profil.</p>
         <a href="quiz.html" class="card-link">Faire le quiz →</a>
       </div>
-      <div class="card">
+      <div class="card reveal">
         <div class="icon" aria-hidden="true">🧮</div>
         <h3>Simulateur d'épargne & intérêts composés</h3>
         <p>Projette ton capital dans le temps selon ton versement mensuel, ton rendement estimé et ta durée d'épargne.</p>
         <a href="simulateur-epargne.html" class="card-link">Ouvrir l'outil →</a>
       </div>
-      <div class="card">
+      <div class="card reveal">
         <div class="icon" aria-hidden="true">📊</div>
         <h3>Comparateur de brokers belges</h3>
         <p>Frais, fiscalité, facilité d'usage — compare les principaux courtiers accessibles depuis la Belgique.</p>
         <a href="comparateurs.html" class="card-link">Comparer les courtiers →</a>
       </div>
-      <div class="card">
+      <div class="card reveal">
         <div class="icon" aria-hidden="true">💶</div>
         <h3>Comparateur de comptes d'épargne</h3>
         <p>Compare les taux des comptes d'épargne réglementés belges en un coup d'œil.</p>
         <a href="comparateurs.html" class="card-link">Comparer les comptes →</a>
       </div>
-      <div class="card">
+      <div class="card reveal">
         <div class="icon" aria-hidden="true">🎯</div>
         <h3>Calculateur d'indépendance financière</h3>
         <p>Découvre combien épargner pour vivre de tes rentes selon la règle des 4 %.</p>
         <a href="fire.html" class="card-link">Ouvrir l'outil →</a>
       </div>
-      <div class="card">
+      <div class="card reveal">
         <div class="icon" aria-hidden="true">🧾</div>
         <h3>Calculateur de taxe sur les plus-values 2026</h3>
         <p>Estime l'impôt dû sur tes plus-values financières selon la réforme belge et ton exonération annuelle.</p>
@@ -91,7 +91,7 @@
       </div>
     </div>
 
-    <div class="card" style="display:flex; gap:24px; align-items:center; flex-wrap:wrap; padding:32px; margin-top:22px;">
+    <div class="card reveal" style="display:flex; gap:24px; align-items:center; flex-wrap:wrap; padding:32px; margin-top:22px;">
       <div style="flex:1; min-width:240px;">
         <div class="icon" aria-hidden="true">🚀</div>
         <h3 style="margin-bottom:6px;">Besoin d'outils plus poussés ?</h3>
@@ -129,6 +129,8 @@ document.getElementById('navToggle').addEventListener('click', function() {
   this.setAttribute('aria-expanded', open);
 });
 </script>
+
+<script src="animations.js"></script>
 
 </body>
 </html>

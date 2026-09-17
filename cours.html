@@ -55,7 +55,7 @@
     <div id="quotes-status" style="text-align:center; color:var(--muted); font-size:13px; margin-bottom:20px;">
       Chargement des cours...
     </div>
-    <div class="grid grid-3" id="quotes-grid"></div>
+    <div class="grid grid-3 reveal-group" id="quotes-grid"></div>
 
     <div class="callout" style="margin-top:32px;">
       <b>À propos de ces données :</b> les cours affichés proviennent d'une source publique et peuvent avoir un léger différé (généralement 15-20 minutes pour les indices). Ils sont fournis à titre informatif et ne doivent pas servir de base à une décision d'investissement immédiate.
@@ -167,6 +167,8 @@ document.getElementById('navToggle').addEventListener('click', function() {
   this.setAttribute('aria-expanded', open);
 });
 </script>
+
+<script src="animations.js"></script>
 
 </body>
 </html>

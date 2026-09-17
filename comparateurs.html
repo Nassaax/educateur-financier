@@ -64,7 +64,7 @@
 
 <section class="section">
   <div class="container">
-    <div class="section-head" style="text-align:left; max-width:none; margin-bottom:24px;">
+    <div class="section-head reveal" style="text-align:left; max-width:none; margin-bottom:24px;">
       <div class="kicker">Investir</div>
       <h2>Comparateur de courtiers en ligne</h2>
       <p>Les 6 courtiers les plus utilisés par les investisseurs belges qui achètent des ETF.</p>
@@ -129,19 +129,19 @@
 
 <section class="section" style="background:#fff; border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
   <div class="container">
-    <div class="section-head" style="text-align:left; max-width:none; margin-bottom:24px;">
+    <div class="section-head reveal" style="text-align:left; max-width:none; margin-bottom:24px;">
       <div class="kicker">Épargner</div>
       <h2>Comment choisir son compte d'épargne belge</h2>
       <p>Les taux changent régulièrement — voici comment comparer intelligemment plutôt que suivre uniquement le chiffre affiché en gros.</p>
     </div>
 
-    <div class="grid grid-2">
-      <div class="card">
+    <div class="grid grid-2 reveal-group">
+      <div class="card reveal">
         <div class="icon" aria-hidden="true">🧩</div>
         <h3>Taux de base + prime de fidélité</h3>
         <p>Un compte d'épargne réglementé belge combine un taux de base (immédiat) et une prime de fidélité (acquise après 12 mois sans retrait). Un compte affichant un taux total plus bas peut parfois rapporter davantage net qu'un concurrent tape-à-l'œil, selon la répartition entre les deux.</p>
       </div>
-      <div class="card">
+      <div class="card reveal">
         <div class="icon" aria-hidden="true">🛡️</div>
         <h3>Exonération fiscale</h3>
         <p>Les intérêts des comptes d'épargne réglementés belges sont exonérés de précompte mobilier jusqu'à un certain montant par an et par personne. Au-delà, le précompte de 30 % s'applique — un point à vérifier si tu épargnes des montants importants.</p>
@@ -194,6 +194,8 @@ document.getElementById('navToggle').addEventListener('click', function() {
   this.setAttribute('aria-expanded', open);
 });
 </script>
+
+<script src="animations.js"></script>
 
 </body>
 </html>
