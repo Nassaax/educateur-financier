@@ -51,6 +51,14 @@ img{max-width:100%;}
 }
 .nav-links a:hover{ background:rgba(255,255,255,.08); color:#fff; }
 .nav-links a.active{ background:var(--gold); color:var(--navy); font-weight:700; }
+.nav-links a.nav-cta{
+  background:var(--gold); color:var(--navy); font-weight:700;
+  margin-left:6px; padding:9px 16px;
+}
+.nav-links a.nav-cta:hover{ background:var(--gold-light); color:var(--navy); }
+@media (max-width:760px){
+  .nav-links a.nav-cta{ margin-left:0; }
+}
 .nav-toggle{
   display:none; background:none; border:none; color:#fff; font-size:22px; cursor:pointer;
 }
