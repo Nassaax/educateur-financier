@@ -38,9 +38,10 @@ img{max-width:100%;}
 }
 .brand{
   font-family:'Fraunces',serif; font-weight:600; font-size:20px;
-  color:#fff; text-decoration:none; display:flex; align-items:center; gap:8px;
+  color:#fff; text-decoration:none; display:flex; align-items:center; gap:9px;
 }
-.brand .dot{color:var(--gold-light);}
+.brand-mark{ height:28px; width:auto; display:block; }
+footer .brand-mark{ height:24px; }
 .nav-links{
   display:flex; gap:2px; list-style:none; margin:0; padding:0;
 }
