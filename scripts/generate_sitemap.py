@@ -27,6 +27,7 @@ PRIORITY_OVERRIDES = {
     "apropos.html": 0.6,
     "mentions-legales.html": 0.3,
     "confidentialite.html": 0.3,
+    "cgv.html": 0.3,
 }
 
 NOINDEX_RE = re.compile(r'<meta\s+name="robots"\s+content="[^"]*noindex[^"]*"', re.IGNORECASE)
