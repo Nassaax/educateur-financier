@@ -1,2 +1,6 @@
 __pycache__/
 *.pyc
+
+# Claude Code skills (installed locally via `npx skills add`, not project content)
+.agents/skills/
+.claude/skills/
